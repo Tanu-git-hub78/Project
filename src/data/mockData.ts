@@ -315,7 +315,6 @@ export const submissions: Submission[] = [];
 
 export const payments: Payment[] = [];
 
-export const adminNotifications = notifications;
 
   export const notifications: Notification[] = [
   {
