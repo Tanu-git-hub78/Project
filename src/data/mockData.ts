@@ -294,7 +294,8 @@ export const departments: Department[] = [
   }
 
 ];
-// Analytics data generator
+
+// ✅ Place the function here, **after departments is closed**
 export const getAnalyticsData = () => {
   return {
     totalStudents: students.length,
