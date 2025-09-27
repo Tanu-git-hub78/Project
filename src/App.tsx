@@ -26,7 +26,6 @@ import ExaminerDashboard from './pages/examiner/ExaminerDashboard';
 import AssignedStudents from './pages/examiner/AssignedStudents';
 import VivaEvaluation from './pages/examiner/VivaEvaluation';
 import ExaminerProfile from './pages/examiner/ExaminerProfile';
-import ManageExaminers from "./pages/admin/ManageExaminers";
 
 function App() {
   return (
