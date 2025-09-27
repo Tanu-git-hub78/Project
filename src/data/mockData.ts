@@ -315,7 +315,6 @@ export const submissions: Submission[] = [];
 
 export const payments: Payment[] = [];
 
-
   export const notifications: Notification[] = [
   {
     id: 'notif1',
@@ -338,8 +337,30 @@ export const payments: Payment[] = [];
     isActive: true
   }
 ];
-// 👇 Add this
-export const adminNotifications = notifications;
+
+// 👇 Instead of referencing `notifications`, make a separate export
+export const adminNotifications: Notification[] = [
+  {
+    id: 'adminNotif1',
+    title: 'Faculty Meeting Scheduled',
+    message: 'All examiners are requested to attend the faculty meeting on May 5th, 2024.',
+    type: 'meeting',
+    targetRole: 'admin',
+    isImportant: true,
+    createdDate: '2024-01-20',
+    isActive: true
+  },
+  {
+    id: 'adminNotif2',
+    title: 'Evaluation Deadline',
+    message: 'Examiners must submit all project evaluations by May 25th, 2024.',
+    type: 'deadline',
+    targetRole: 'admin',
+    isImportant: true,
+    createdDate: '2024-01-18',
+    isActive: true
+  }
+];
 
 // Helper functions
 export const getDepartmentTopics = (departmentId: string): ProjectTopic[] => {
