@@ -339,7 +339,8 @@ export const adminNotifications = notifications;
     isActive: true
   }
 ];
-
+// 👇 Add this
+export const adminNotifications = notifications;
 
 // Helper functions
 export const getDepartmentTopics = (departmentId: string): ProjectTopic[] => {
