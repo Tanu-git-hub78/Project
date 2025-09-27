@@ -296,7 +296,7 @@ export const departments: Department[] = [
 ];
 
 // ✅ Place the function here, **after departments is closed**
-export const getAnalyticsData = () => ]
+export const getAnalyticsData = () => {
   return {
     totalStudents: students.length,
     totalAdmins: admins.length,
@@ -308,7 +308,7 @@ export const getAnalyticsData = () => ]
     paidStudents: students.filter(s => s.paymentStatus === 'paid').length,
     pendingPayments: students.filter(s => s.paymentStatus === 'pending').length
   };
-];
+};
 
 export const submissions: Submission[] = [];
 
