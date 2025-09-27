@@ -292,7 +292,9 @@ export const departments: Department[] = [
       }
     ]
   }
-  // Analytics data generator
+
+];
+// Analytics data generator
 export const getAnalyticsData = () => {
   return {
     totalStudents: students.length,
@@ -307,7 +309,6 @@ export const getAnalyticsData = () => {
   };
 };
 
-];
 
 export const submissions: Submission[] = [];
 
