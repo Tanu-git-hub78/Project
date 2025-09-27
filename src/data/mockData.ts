@@ -416,3 +416,18 @@ export const addEvaluationRecord = (examinerId: string, record: Omit<EvaluationR
   }
   return null;
 };
+
+// ✅ Place this at the very bottom of mockData.ts
+export const getAnalyticsData = () => {
+  return {
+    totalStudents: students.length,
+    totalAdmins: admins.length,
+    totalExaminers: examiners.length,
+    totalDepartments: departments.length,
+    totalSubmissions: submissions.length,
+    totalPayments: payments.length,
+    activeNotifications: notifications.filter(n => n.isActive).length,
+    paidStudents: students.filter(s => s.paymentStatus === 'paid').length,
+    pendingPayments: students.filter(s => s.paymentStatus === 'pending').length
+  };
+};
