@@ -6,18 +6,7 @@ import { getAnalyticsData } from "../data/mockData";
 
 const Analytics: React.FC = () => {
   const analyticsData = getAnalyticsData();
-  return {
-    totalStudents: students.length,
-    totalAdmins: admins.length,
-    totalExaminers: examiners.length,
-    totalDepartments: departments.length,
-    totalSubmissions: submissions.length,
-    totalPayments: payments.length,
-    activeNotifications: notifications.filter(n => n.isActive).length,
-    paidStudents: students.filter(s => s.paymentStatus === "paid").length,
-    pendingPayments: students.filter(s => s.paymentStatus === "pending").length,
-  };
-};
+
   
   const chartData = analyticsData.map(data => ({
     name: data.degree,
