@@ -87,6 +87,7 @@ export const examiners: Examiner[] = [
 ];
 
 export const departments: Department[] = [
+  
   {
     id: 'agriculture',
     name: 'Agriculture Science',
@@ -291,6 +292,21 @@ export const departments: Department[] = [
       }
     ]
   }
+  // Analytics data generator
+export const getAnalyticsData = () => {
+  return {
+    totalStudents: students.length,
+    totalAdmins: admins.length,
+    totalExaminers: examiners.length,
+    totalDepartments: departments.length,
+    totalSubmissions: submissions.length,
+    totalPayments: payments.length,
+    activeNotifications: notifications.filter(n => n.isActive).length,
+    paidStudents: students.filter(s => s.paymentStatus === 'paid').length,
+    pendingPayments: students.filter(s => s.paymentStatus === 'pending').length
+  };
+};
+
 ];
 
 export const submissions: Submission[] = [];
