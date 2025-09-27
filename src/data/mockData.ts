@@ -315,7 +315,9 @@ export const submissions: Submission[] = [];
 
 export const payments: Payment[] = [];
 
-export const notifications: Notification[] = [
+export const adminNotifications = notifications;
+
+  export const notifications: Notification[] = [
   {
     id: 'notif1',
     title: 'Project Submission Deadline Extended',
@@ -337,6 +339,7 @@ export const notifications: Notification[] = [
     isActive: true
   }
 ];
+
 
 // Helper functions
 export const getDepartmentTopics = (departmentId: string): ProjectTopic[] => {
