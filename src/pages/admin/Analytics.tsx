@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { Download, FileText, TrendingUp } from 'lucide-react';
-import { getAnalyticsData } from "../data/mockData";
+import { getAnalyticsData } from "../../data/mockData";
 
 const Analytics: React.FC = () => {
   const analyticsData = getAnalyticsData();
