@@ -186,7 +186,7 @@ const Guidelines: React.FC = () => {
                   <h4 className="font-medium text-gray-900">{notification.title}</h4>
                   <p className="text-gray-600 mt-1">{notification.message}</p>
                   <p className="text-gray-500 text-sm mt-2">
-                    {new Date(notification.date).toLocaleDateString()}
+                    {new Date(notification.createdDate).toLocaleDateString()}
                   </p>
                 </div>
               </div>

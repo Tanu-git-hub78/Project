@@ -86,35 +86,17 @@ export const examiners: Examiner[] = [
   }
 ];
 
-import React from "react";
-import { departments } from "../../data/mockData";
-
-const ProjectTopics: React.FC = () => {
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Department Project Topics</h1>
-
-      {Object.entries(departments).map(([department, details]) => (
-        <div key={department} className="mb-6 border p-4 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-2">{department}</h2>
-
-          <h3 className="font-medium">Projects:</h3>
-          <ul className="list-disc list-inside mb-2">
-            {details.projects.map((proj, index) => (
-              <li key={index}>{proj}</li>
-            ))}
-          </ul>
-
-          <p className="text-sm text-gray-700">
-            <strong>Workshop:</strong> {details.workshop}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default ProjectTopics;
+// Categories for project submission
+export const categories = [
+  'Research Project',
+  'Field Study',
+  'Internship Report',
+  'Workshop Project',
+  'Technical Project',
+  'Literature Review',
+  'Case Study',
+  'Survey Analysis'
+];
 
 // Analytics data for degrees
 export const degrees = [
@@ -504,6 +486,69 @@ export const colleges = [
   }
 ];
 
+// Departments data
+export const departments: Department[] = [
+  {
+    id: 'agriculture-science',
+    name: 'Agriculture Science',
+    shortName: 'Agriculture',
+    topics: [],
+    projects: [
+      'Precision Farming with IoT Sensors',
+      'Organic Fertilizer Impact Study',
+      'Drone-based Crop Health Monitoring'
+    ],
+    workshop: 'Teaching & Workshop: Sustainable Farming Practices and Agri-Tech Awareness'
+  },
+  {
+    id: 'ancient-history',
+    name: 'Ancient History',
+    shortName: 'History',
+    topics: [],
+    projects: [
+      'Digital Archiving with GIS and 3D Models',
+      'Oral History Documentation',
+      'AI-based Text Recognition for Ancient Scripts'
+    ],
+    workshop: 'Teaching & Workshop: Heritage Awareness and Digital History Tools'
+  },
+  {
+    id: 'botany',
+    name: 'Botany',
+    shortName: 'Botany',
+    topics: [],
+    projects: [
+      'Medicinal Plant Survey & Phytochemical Screening',
+      'Plant Tissue Culture',
+      'Climate Impact on Flora'
+    ],
+    workshop: 'Teaching & Workshop: Awareness of Medicinal Plants and Lab Techniques'
+  },
+  {
+    id: 'chemistry',
+    name: 'Chemistry',
+    shortName: 'Chemistry',
+    topics: [],
+    projects: [
+      'Biodegradable Plastic Synthesis',
+      'Water Purification with Nano-materials',
+      'Green Catalysts'
+    ],
+    workshop: 'Teaching & Workshop: Green Chemistry and Modern Lab Safety'
+  },
+  {
+    id: 'commerce',
+    name: 'Commerce',
+    shortName: 'Commerce',
+    topics: [],
+    projects: [
+      'Consumer Behavior in E-Commerce',
+      'FinTech Adoption',
+      'Digital Marketing Analytics'
+    ],
+    workshop: 'Teaching & Workshop: Financial Literacy and Digital Business Skills'
+  }
+];
 
 export const submissions: Submission[] = [];
 
@@ -580,7 +625,9 @@ export const updatePaymentStatus = (studentId: string, status: 'paid' | 'pending
 export const addSubmission = (submission: Omit<Submission, 'id'>) => {
   const newSubmission: Submission = {
     ...submission,
-    id: Date.now().toString()
+    id: Date.now().toString(),
+    category: submission.category || 'General Project',
+    degree: submission.degree || 'Unknown'
   };
   submissions.push(newSubmission);
   return newSubmission;

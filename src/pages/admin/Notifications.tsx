@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import { Plus, Edit, Trash2, Bell, Calendar, AlertCircle } from 'lucide-react';
 import { adminNotifications } from '../../data/mockData';
-import { AdminNotification } from '../../types';
+import { Notification } from '../../types';
 
 const Notifications: React.FC = () => {
-  const [notifications, setNotifications] = useState<AdminNotification[]>(adminNotifications);
+  const [notifications, setNotifications] = useState<Notification[]>(adminNotifications);
   const [showModal, setShowModal] = useState(false);
-  const [editingNotification, setEditingNotification] = useState<AdminNotification | null>(null);
+  const [editingNotification, setEditingNotification] = useState<Notification | null>(null);
   const [formData, setFormData] = useState({
     title: '',
     message: '',
@@ -20,7 +20,7 @@ const Notifications: React.FC = () => {
     setShowModal(true);
   };
 
-  const handleEdit = (notification: AdminNotification) => {
+  const handleEdit = (notification: Notification) => {
     setEditingNotification(notification);
     setFormData({
       title: notification.title,

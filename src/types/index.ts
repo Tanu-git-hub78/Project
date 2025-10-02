@@ -7,6 +7,7 @@ export interface User {
   department?: string;
   rollNumber?: string;
   college?: string;
+  degree?: string;
 }
 
 export interface Student extends User {
@@ -18,6 +19,7 @@ export interface Student extends User {
   paymentStatus: 'pending' | 'paid';
   paymentDate?: string;
   totalScore?: number;
+  degree: string;
 }
 
 export interface Admin extends User {
@@ -62,6 +64,8 @@ export interface Submission {
   vivaMarks?: number;
   totalScore?: number;
   paymentStatus: 'pending' | 'paid';
+  category?: string;
+  degree?: string;
 }
 
 export interface ProjectTopic {
@@ -79,6 +83,8 @@ export interface Department {
   name: string;
   shortName: string;
   topics: ProjectTopic[];
+  projects: string[];
+  workshop: string;
 }
 
 export interface Payment {
@@ -94,7 +100,7 @@ export interface Notification {
   id: string;
   title: string;
   message: string;
-  type: 'deadline' | 'announcement' | 'examiner' | 'payment';
+  type: 'deadline' | 'announcement' | 'examiner' | 'payment' | 'meeting' | 'format' | 'general';
   targetRole: 'student' | 'admin' | 'examiner' | 'all';
   department?: string;
   isImportant: boolean;
@@ -109,4 +115,45 @@ export interface ChatMessage {
   timestamp: string;
   userId: string;
   userRole: 'student' | 'admin' | 'examiner';
+}
+
+export interface StudentSubmissionStatus {
+  studentId: string;
+  topicSubmissions: {
+    [key: string]: {
+      status: 'Not Submitted' | 'Submitted';
+      uploadedFile?: {
+        name: string;
+        type: string;
+        uploadDate: string;
+      };
+      aiFeedback: string[];
+    };
+  };
+}
+
+export interface AIProjectIdea {
+  id: string;
+  title: string;
+  description: string;
+  degree: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  estimatedDuration: string;
+  technologies?: string[];
+}
+
+export interface TopicProject {
+  id: string;
+  name: string;
+  description: string;
+  submissionStatus: 'Not Submitted' | 'Submitted';
+  hasFile: boolean;
+  fileName: string;
+  comments: string[];
+  guidance: string[];
+  uploadedFile?: {
+    name: string;
+    type: string;
+    uploadDate: string;
+  };
 }

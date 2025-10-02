@@ -37,7 +37,7 @@ const Chatbot: React.FC = () => {
 
   const processMessage = (message: string): { text: string; action?: () => void } => {
     const msg = message.toLowerCase();
-    const studentDegree = user?.degree || 'BSc CS';
+    const studentDegree = (user && user.role === 'student') ? (user as any).degree || 'BSc CS' : 'BSc CS';
 
     if (user?.role === 'student') {
       if (msg.includes('upload') || msg.includes('how to upload')) {

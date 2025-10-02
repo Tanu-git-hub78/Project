@@ -11,7 +11,7 @@ const ProjectSubmission: React.FC = () => {
     title: '',
     description: '',
     facultyName: '',
-    department: user?.department || '',
+    department: (user && user.role === 'student') ? (user as any).department || '' : '',
     fileName: ''
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -55,7 +55,7 @@ const ProjectSubmission: React.FC = () => {
       const submission = {
         studentId: user?.id || '',
         studentName: user?.name || '',
-        rollNumber: user?.rollNumber || '',
+        rollNumber: (user && user.role === 'student') ? (user as any).rollNumber || '' : '',
         department: formData.department,
         title: formData.title,
         description: formData.description,

@@ -81,7 +81,7 @@ const Projects: React.FC = () => {
                   <div><span className="font-medium">Category:</span> {selectedProject.category}</div>
                   <div><span className="font-medium">Degree:</span> {selectedProject.degree}</div>
                   <div><span className="font-medium">Faculty:</span> {selectedProject.facultyName}</div>
-                  <div><span className="font-medium">Submitted:</span> {new Date(selectedProject.date).toLocaleDateString()}</div>
+                  <div><span className="font-medium">Submitted:</span> {new Date(selectedProject.submissionDate).toLocaleDateString()}</div>
                   <div><span className="font-medium">File:</span> {selectedProject.fileName}</div>
                 </div>
               </div>
@@ -275,7 +275,7 @@ const Projects: React.FC = () => {
                     {project.degree}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {new Date(project.date).toLocaleDateString()}
+                    {new Date(project.submissionDate).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center space-x-2">

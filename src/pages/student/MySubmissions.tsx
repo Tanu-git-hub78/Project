@@ -51,7 +51,7 @@ const MySubmissions: React.FC = () => {
             </span>
             <span className="text-gray-600 text-sm flex items-center">
               <Calendar className="h-4 w-4 mr-1" />
-              {new Date(submission.date).toLocaleDateString()}
+              {new Date(submission.submissionDate).toLocaleDateString()}
             </span>
           </div>
         </div>
@@ -130,7 +130,7 @@ const MySubmissions: React.FC = () => {
                     <div className="text-sm text-gray-500">{submission.category}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                    {new Date(submission.date).toLocaleDateString()}
+                    {new Date(submission.submissionDate).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
