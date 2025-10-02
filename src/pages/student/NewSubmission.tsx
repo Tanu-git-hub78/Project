@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { Upload, FileText, CheckCircle } from 'lucide-react';
+import { Upload, FileText, CircleCheck as CheckCircle } from 'lucide-react';
 import { categories } from '../../data/mockData';
 
 const NewSubmission: React.FC = () => {

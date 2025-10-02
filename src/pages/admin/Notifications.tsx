@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { Plus, Edit, Trash2, Bell, Calendar, AlertCircle } from 'lucide-react';
+import { Plus, CreditCard as Edit, Trash2, Bell, Calendar, CircleAlert as AlertCircle } from 'lucide-react';
 import { adminNotifications } from '../../data/mockData';
 import { Notification } from '../../types';
 

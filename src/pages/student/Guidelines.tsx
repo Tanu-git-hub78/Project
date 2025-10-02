@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-import { Clock, Upload, Shield, CheckCircle, Bell, FileText, Image } from 'lucide-react';
+import { Clock, Upload, Shield, CircleCheck as CheckCircle, Bell, FileText, Image } from 'lucide-react';
 import { notifications } from '../../data/mockData';
 
 const Guidelines: React.FC = () => {
@@ -186,7 +186,7 @@ const Guidelines: React.FC = () => {
                   <h4 className="font-medium text-gray-900">{notification.title}</h4>
                   <p className="text-gray-600 mt-1">{notification.message}</p>
                   <p className="text-gray-500 text-sm mt-2">
-                    {new Date(notification.createdDate).toLocaleDateString()}
+                    {new Date(notification.date).toLocaleDateString()}
                   </p>
                 </div>
               </div>

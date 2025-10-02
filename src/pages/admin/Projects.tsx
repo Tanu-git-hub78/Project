@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { FileText, Eye, CheckCircle, XCircle, Clock, MessageSquare } from 'lucide-react';
+import { FileText, Eye, CircleCheck as CheckCircle, Circle as XCircle, Clock, MessageSquare } from 'lucide-react';
 import { submissions } from '../../data/mockData';
 import { Submission } from '../../types';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { Eye, Calendar, CheckCircle, Clock, XCircle } from 'lucide-react';
+import { Eye, Calendar, CircleCheck as CheckCircle, Clock, Circle as XCircle } from 'lucide-react';
 import { submissions } from '../../data/mockData';
 
 const MySubmissions: React.FC = () => {
