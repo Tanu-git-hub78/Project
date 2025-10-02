@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { Plus, Edit, Trash2, RotateCcw, Ban, Eye } from 'lucide-react';
+import { Plus, CreditCard as Edit, Trash2, RotateCcw, Ban, Eye } from 'lucide-react';
 import { students } from '../../data/mockData';
 
 const ManageStudents: React.FC = () => {
