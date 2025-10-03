@@ -1,24 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import Layout from '../../components/Layout';
-import { 
-  Search, 
-  Filter, 
-  Bookmark, 
-  BookmarkCheck, 
-  Eye, 
-  Clock, 
-  Users, 
-  Star,
-  Calendar,
-  ChevronRight,
-  X,
-  Mail,
-  User,
-  Target,
-  Wrench,
-  Award,
-  TrendingUp
-} from 'lucide-react';
+import { Search, ListFilter as Filter, Bookmark, BookmarkCheck, Eye, Clock, Users, Star, Calendar, ChevronRight, X, Mail, User, Target, Wrench, Award, TrendingUp } from 'lucide-react';
 import { topicCards } from '../../data/mockData';
 import { TopicProject } from '../../types';
 
