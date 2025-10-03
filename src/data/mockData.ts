@@ -202,21 +202,53 @@ export const topicCards = [
         id: 'waste-management',
         name: 'Waste Management Project',
         description: 'Develop sustainable waste management solutions for local communities.',
+        objectives: [
+          'Analyze current waste management practices in local communities',
+          'Design innovative waste segregation systems',
+          'Implement pilot recycling programs',
+          'Measure environmental impact reduction'
+        ],
+        duration: '3-4 months',
+        tools: ['Data Collection Tools', 'GIS Mapping', 'Statistical Analysis', 'Community Surveys'],
+        facultyGuide: {
+          name: 'Dr. Priya Sharma',
+          email: 'priya.sharma@university.edu',
+          department: 'Environmental Studies'
+        },
+        type: 'research' as const,
+        difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
         comments: ['Focus on practical implementation', 'Include cost-benefit analysis'],
-        guidance: ['Research current waste management practices', 'Identify key stakeholders', 'Propose innovative solutions']
+        guidance: ['Research current waste management practices', 'Identify key stakeholders', 'Propose innovative solutions'],
+        isBookmarked: false
       },
       {
         id: 'renewable-energy',
         name: 'Renewable Energy Assessment',
         description: 'Assess renewable energy potential in rural areas.',
+        objectives: [
+          'Survey renewable energy resources in target areas',
+          'Calculate energy generation potential',
+          'Analyze economic feasibility',
+          'Prepare implementation roadmap'
+        ],
+        duration: '4-5 months',
+        tools: ['Solar Meters', 'Wind Speed Analyzers', 'Economic Modeling Software', 'GIS Tools'],
+        facultyGuide: {
+          name: 'Prof. Rajesh Kumar',
+          email: 'rajesh.kumar@university.edu',
+          department: 'Environmental Studies'
+        },
+        type: 'field-based' as const,
+        difficulty: 'Advanced' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: true,
         fileName: 'renewable-energy-guidelines.pdf',
         comments: ['Consider multiple energy sources', 'Include feasibility study'],
-        guidance: ['Study solar and wind potential', 'Analyze energy consumption patterns', 'Calculate return on investment']
+        guidance: ['Study solar and wind potential', 'Analyze energy consumption patterns', 'Calculate return on investment'],
+        isBookmarked: false
       }
     ]
   },
@@ -231,21 +263,53 @@ export const topicCards = [
         id: 'health-awareness',
         name: 'Health Awareness Campaign',
         description: 'Design and implement health awareness campaigns for rural communities.',
+        objectives: [
+          'Identify priority health issues in target communities',
+          'Design culturally appropriate awareness materials',
+          'Conduct community health education sessions',
+          'Measure campaign effectiveness and reach'
+        ],
+        duration: '2-3 months',
+        tools: ['Survey Tools', 'Design Software', 'Presentation Tools', 'Analytics Platforms'],
+        facultyGuide: {
+          name: 'Dr. Meera Patel',
+          email: 'meera.patel@university.edu',
+          department: 'Public Health'
+        },
+        type: 'short-term' as const,
+        difficulty: 'Beginner' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
         comments: ['Target specific health issues', 'Measure campaign effectiveness'],
-        guidance: ['Identify priority health issues', 'Design engaging materials', 'Plan community outreach events']
+        guidance: ['Identify priority health issues', 'Design engaging materials', 'Plan community outreach events'],
+        isBookmarked: false
       },
       {
         id: 'nutrition-study',
         name: 'Nutrition Assessment Study',
         description: 'Conduct nutritional assessment in local schools.',
+        objectives: [
+          'Assess nutritional status of school children',
+          'Identify dietary deficiencies and patterns',
+          'Develop nutrition improvement recommendations',
+          'Create awareness programs for parents and teachers'
+        ],
+        duration: '3-4 months',
+        tools: ['Anthropometric Tools', 'Dietary Assessment Software', 'Statistical Analysis', 'Report Generation'],
+        facultyGuide: {
+          name: 'Dr. Anita Singh',
+          email: 'anita.singh@university.edu',
+          department: 'Public Health'
+        },
+        type: 'research' as const,
+        difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: true,
         fileName: 'nutrition-assessment-template.pdf',
         comments: ['Use standardized assessment tools', 'Include dietary recommendations'],
-        guidance: ['Learn assessment techniques', 'Collect comprehensive data', 'Provide actionable recommendations']
+        guidance: ['Learn assessment techniques', 'Collect comprehensive data', 'Provide actionable recommendations'],
+        isBookmarked: false
       }
     ]
   },
@@ -260,21 +324,53 @@ export const topicCards = [
         id: 'organic-farming',
         name: 'Organic Farming Initiative',
         description: 'Promote organic farming practices among local farmers.',
+        objectives: [
+          'Study traditional and modern organic farming methods',
+          'Train local farmers in organic practices',
+          'Monitor crop yield and quality improvements',
+          'Document economic benefits and challenges'
+        ],
+        duration: '4-6 months',
+        tools: ['Soil Testing Kits', 'Organic Fertilizers', 'Yield Measurement Tools', 'Economic Analysis Software'],
+        facultyGuide: {
+          name: 'Prof. Suresh Verma',
+          email: 'suresh.verma@university.edu',
+          department: 'Agriculture'
+        },
+        type: 'field-based' as const,
+        difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
         comments: ['Document farmer feedback', 'Compare yield differences'],
-        guidance: ['Research organic methods', 'Connect with local farmers', 'Monitor implementation progress']
+        guidance: ['Research organic methods', 'Connect with local farmers', 'Monitor implementation progress'],
+        isBookmarked: false
       },
       {
         id: 'crop-monitoring',
         name: 'Smart Crop Monitoring',
         description: 'Implement IoT-based crop monitoring systems.',
+        objectives: [
+          'Design IoT sensor networks for crop monitoring',
+          'Develop data collection and analysis systems',
+          'Create farmer-friendly mobile applications',
+          'Test system effectiveness in real farm conditions'
+        ],
+        duration: '5-6 months',
+        tools: ['IoT Sensors', 'Microcontrollers', 'Mobile App Development', 'Data Analytics Platforms'],
+        facultyGuide: {
+          name: 'Dr. Amit Gupta',
+          email: 'amit.gupta@university.edu',
+          department: 'Agriculture Technology'
+        },
+        type: 'research' as const,
+        difficulty: 'Advanced' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: true,
         fileName: 'iot-agriculture-guide.pdf',
         comments: ['Focus on cost-effective solutions', 'Include technical specifications'],
-        guidance: ['Learn IoT basics', 'Design monitoring system', 'Test with real crops']
+        guidance: ['Learn IoT basics', 'Design monitoring system', 'Test with real crops'],
+        isBookmarked: false
       }
     ]
   },
@@ -289,21 +385,53 @@ export const topicCards = [
         id: 'animal-health-survey',
         name: 'Animal Health Survey',
         description: 'Conduct health surveys of livestock in rural areas.',
+        objectives: [
+          'Survey livestock health status in rural communities',
+          'Identify common diseases and health issues',
+          'Document vaccination and treatment records',
+          'Recommend preventive healthcare measures'
+        ],
+        duration: '3-4 months',
+        tools: ['Health Assessment Forms', 'Digital Cameras', 'GPS Devices', 'Database Software'],
+        facultyGuide: {
+          name: 'Dr. Kavita Joshi',
+          email: 'kavita.joshi@university.edu',
+          department: 'Veterinary Science'
+        },
+        type: 'field-based' as const,
+        difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
         comments: ['Include vaccination records', 'Document common diseases'],
-        guidance: ['Learn basic veterinary assessment', 'Coordinate with local vets', 'Create health database']
+        guidance: ['Learn basic veterinary assessment', 'Coordinate with local vets', 'Create health database'],
+        isBookmarked: false
       },
       {
         id: 'pet-care-awareness',
         name: 'Pet Care Awareness Program',
         description: 'Educate communities about proper pet care and hygiene.',
+        objectives: [
+          'Develop pet care educational materials',
+          'Conduct community awareness sessions',
+          'Train pet owners in basic healthcare',
+          'Establish pet care support networks'
+        ],
+        duration: '2-3 months',
+        tools: ['Educational Materials', 'Presentation Tools', 'Pet Care Kits', 'Community Networks'],
+        facultyGuide: {
+          name: 'Dr. Ravi Sharma',
+          email: 'ravi.sharma@university.edu',
+          department: 'Veterinary Science'
+        },
+        type: 'workshop' as const,
+        difficulty: 'Beginner' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: true,
         fileName: 'pet-care-guidelines.pdf',
         comments: ['Include practical demonstrations', 'Focus on preventive care'],
-        guidance: ['Research pet care best practices', 'Prepare educational materials', 'Organize community sessions']
+        guidance: ['Research pet care best practices', 'Prepare educational materials', 'Organize community sessions'],
+        isBookmarked: false
       }
     ]
   },
@@ -318,21 +446,53 @@ export const topicCards = [
         id: 'financial-literacy',
         name: 'Financial Literacy Program',
         description: 'Conduct financial literacy workshops for rural communities.',
+        objectives: [
+          'Assess current financial literacy levels',
+          'Design culturally appropriate training modules',
+          'Conduct interactive financial education workshops',
+          'Measure improvement in financial knowledge and behavior'
+        ],
+        duration: '3-4 months',
+        tools: ['Training Materials', 'Interactive Games', 'Assessment Tools', 'Mobile Banking Apps'],
+        facultyGuide: {
+          name: 'Prof. Deepak Agarwal',
+          email: 'deepak.agarwal@university.edu',
+          department: 'Banking & Finance'
+        },
+        type: 'workshop' as const,
+        difficulty: 'Beginner' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
         comments: ['Use simple, practical examples', 'Include digital banking basics'],
-        guidance: ['Understand basic financial concepts', 'Design interactive workshops', 'Create easy-to-understand materials']
+        guidance: ['Understand basic financial concepts', 'Design interactive workshops', 'Create easy-to-understand materials'],
+        isBookmarked: false
       },
       {
         id: 'digital-banking',
         name: 'Digital Banking Adoption',
         description: 'Help communities adopt digital banking services.',
+        objectives: [
+          'Study barriers to digital banking adoption',
+          'Develop user-friendly training programs',
+          'Provide hands-on digital banking training',
+          'Monitor adoption rates and user satisfaction'
+        ],
+        duration: '2-3 months',
+        tools: ['Smartphones/Tablets', 'Banking Apps', 'Training Modules', 'User Feedback Systems'],
+        facultyGuide: {
+          name: 'Dr. Neha Kapoor',
+          email: 'neha.kapoor@university.edu',
+          department: 'Banking Technology'
+        },
+        type: 'short-term' as const,
+        difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: true,
         fileName: 'digital-banking-tutorial.pdf',
         comments: ['Address security concerns', 'Provide hands-on training'],
-        guidance: ['Learn digital banking platforms', 'Identify user barriers', 'Provide step-by-step guidance']
+        guidance: ['Learn digital banking platforms', 'Identify user barriers', 'Provide step-by-step guidance'],
+        isBookmarked: false
       }
     ]
   },
@@ -347,21 +507,53 @@ export const topicCards = [
         id: 'community-development',
         name: 'Community Development Project',
         description: 'Identify and address key community development needs.',
+        objectives: [
+          'Conduct comprehensive community needs assessment',
+          'Identify priority development areas',
+          'Design community-driven development programs',
+          'Implement pilot development initiatives'
+        ],
+        duration: '4-5 months',
+        tools: ['Survey Tools', 'Community Mapping', 'Project Management Software', 'Impact Measurement Tools'],
+        facultyGuide: {
+          name: 'Dr. Sunita Rao',
+          email: 'sunita.rao@university.edu',
+          department: 'Social Work'
+        },
+        type: 'field-based' as const,
+        difficulty: 'Advanced' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
         comments: ['Involve community members in planning', 'Focus on sustainable solutions'],
-        guidance: ['Conduct community needs assessment', 'Build local partnerships', 'Develop action plans']
+        guidance: ['Conduct community needs assessment', 'Build local partnerships', 'Develop action plans'],
+        isBookmarked: false
       },
       {
         id: 'elderly-care',
         name: 'Elderly Care Initiative',
         description: 'Develop support systems for elderly community members.',
+        objectives: [
+          'Assess elderly care needs in the community',
+          'Design comprehensive support programs',
+          'Train community volunteers in elderly care',
+          'Establish sustainable care networks'
+        ],
+        duration: '3-4 months',
+        tools: ['Assessment Forms', 'Training Materials', 'Care Protocols', 'Volunteer Management Systems'],
+        facultyGuide: {
+          name: 'Prof. Ramesh Gupta',
+          email: 'ramesh.gupta@university.edu',
+          department: 'Social Work'
+        },
+        type: 'workshop' as const,
+        difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: true,
         fileName: 'elderly-care-framework.pdf',
         comments: ['Include family involvement strategies', 'Address healthcare access'],
-        guidance: ['Assess elderly population needs', 'Design support programs', 'Train community volunteers']
+        guidance: ['Assess elderly population needs', 'Design support programs', 'Train community volunteers'],
+        isBookmarked: false
       }
     ]
   },
@@ -376,21 +568,53 @@ export const topicCards = [
         id: 'adult-literacy',
         name: 'Adult Literacy Program',
         description: 'Teach basic literacy skills to adults in rural communities.',
+        objectives: [
+          'Assess adult literacy levels in target communities',
+          'Develop age-appropriate learning materials',
+          'Conduct structured literacy classes',
+          'Track learning progress and outcomes'
+        ],
+        duration: '4-6 months',
+        tools: ['Learning Materials', 'Assessment Tools', 'Teaching Aids', 'Progress Tracking Systems'],
+        facultyGuide: {
+          name: 'Dr. Pooja Mishra',
+          email: 'pooja.mishra@university.edu',
+          department: 'Education'
+        },
+        type: 'workshop' as const,
+        difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
         comments: ['Use culturally relevant materials', 'Track learning progress'],
-        guidance: ['Assess current literacy levels', 'Develop appropriate curriculum', 'Use engaging teaching methods']
+        guidance: ['Assess current literacy levels', 'Develop appropriate curriculum', 'Use engaging teaching methods'],
+        isBookmarked: false
       },
       {
         id: 'skill-development',
         name: 'Skill Development Workshop',
         description: 'Conduct workshops to teach practical skills for employment.',
+        objectives: [
+          'Identify market-relevant skills in demand',
+          'Design practical skill training modules',
+          'Conduct hands-on training workshops',
+          'Connect trainees with employment opportunities'
+        ],
+        duration: '2-3 months',
+        tools: ['Training Equipment', 'Skill Assessment Tools', 'Certification Systems', 'Job Placement Networks'],
+        facultyGuide: {
+          name: 'Prof. Vikash Kumar',
+          email: 'vikash.kumar@university.edu',
+          department: 'Skill Development'
+        },
+        type: 'workshop' as const,
+        difficulty: 'Beginner' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: true,
         fileName: 'skill-development-modules.pdf',
         comments: ['Focus on market-relevant skills', 'Include certification process'],
-        guidance: ['Identify in-demand skills', 'Design practical training modules', 'Connect with potential employers']
+        guidance: ['Identify in-demand skills', 'Design practical training modules', 'Connect with potential employers'],
+        isBookmarked: false
       }
     ]
   }

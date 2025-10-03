@@ -146,6 +146,16 @@ export interface TopicProject {
   id: string;
   name: string;
   description: string;
+  objectives: string[];
+  duration: string;
+  tools: string[];
+  facultyGuide: {
+    name: string;
+    email: string;
+    department: string;
+  };
+  type: 'workshop' | 'research' | 'short-term' | 'field-based';
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
   submissionStatus: 'Not Submitted' | 'Submitted';
   hasFile: boolean;
   fileName: string;
@@ -156,4 +166,5 @@ export interface TopicProject {
     type: string;
     uploadDate: string;
   };
+  isBookmarked?: boolean;
 }

@@ -1,381 +1,501 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Layout from '../../components/Layout';
-import { ChevronDown, ChevronRight, FolderOpen, Folder, FileText, Users } from 'lucide-react';
-import { departments } from '../../data/mockData';
+import { 
+  Search, 
+  Filter, 
+  Bookmark, 
+  BookmarkCheck, 
+  Eye, 
+  Clock, 
+  Users, 
+  Star,
+  Calendar,
+  ChevronRight,
+  X,
+  Mail,
+  User,
+  Target,
+  Wrench,
+  Award,
+  TrendingUp
+} from 'lucide-react';
+import { topicCards } from '../../data/mockData';
+import { TopicProject } from '../../types';
 
 const ProjectTopics: React.FC = () => {
-  const [expandedDepartments, setExpandedDepartments] = useState<string[]>([]);
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [selectedProject, setSelectedProject] = useState<TopicProject | null>(null);
+  const [bookmarkedProjects, setBookmarkedProjects] = useState<string[]>([]);
+  const [exploredDepartments, setExploredDepartments] = useState<string[]>([]);
 
-  const toggleDepartment = (departmentId: string) => {
-    setExpandedDepartments(prev => 
-      prev.includes(departmentId) 
-        ? prev.filter(id => id !== departmentId)
-        : [...prev, departmentId]
-    );
-  };
+  // Get all projects from all departments
+  const allProjects = useMemo(() => {
+    const projects: (TopicProject & { departmentName: string; departmentIcon: string })[] = [];
+    topicCards.forEach(department => {
+      department.projects.forEach(project => {
+        projects.push({
+          ...project,
+          departmentName: department.title,
+          departmentIcon: department.icon
+        });
+      });
+    });
+    return projects;
+  }, []);
 
-  const toggleFilter = (filter: string) => {
-    setSelectedFilters(prev => 
-      prev.includes(filter)
-        ? prev.filter(f => f !== filter)
-        : [...prev, filter]
-    );
-  };
+  // Filter projects based on search and filter criteria
+  const filteredProjects = useMemo(() => {
+    let filtered = allProjects;
 
-  const filteredDepartments = departments.filter(dept => 
-    selectedFilters.length === 0 || selectedFilters.includes(dept.shortName)
-  );
-
-  const allDepartments = [
-    {
-      id: 'agriculture-science',
-      name: 'Agriculture Science',
-      shortName: 'Agriculture',
-      projects: [
-        'Precision Farming with IoT Sensors',
-        'Organic Fertilizer Impact Study',
-        'Drone-based Crop Health Monitoring'
-      ],
-      workshop: 'Teaching & Workshop: Sustainable Farming Practices and Agri-Tech Awareness'
-    },
-    {
-      id: 'ancient-history',
-      name: 'Ancient History',
-      shortName: 'History',
-      projects: [
-        'Digital Archiving with GIS and 3D Models',
-        'Oral History Documentation',
-        'AI-based Text Recognition for Ancient Scripts'
-      ],
-      workshop: 'Teaching & Workshop: Heritage Awareness and Digital History Tools'
-    },
-    {
-      id: 'botany',
-      name: 'Botany',
-      shortName: 'Botany',
-      projects: [
-        'Medicinal Plant Survey & Phytochemical Screening',
-        'Plant Tissue Culture',
-        'Climate Impact on Flora'
-      ],
-      workshop: 'Teaching & Workshop: Awareness of Medicinal Plants and Lab Techniques'
-    },
-    {
-      id: 'chemistry',
-      name: 'Chemistry',
-      shortName: 'Chemistry',
-      projects: [
-        'Biodegradable Plastic Synthesis',
-        'Water Purification with Nano-materials',
-        'Green Catalysts'
-      ],
-      workshop: 'Teaching & Workshop: Green Chemistry and Modern Lab Safety'
-    },
-    {
-      id: 'commerce',
-      name: 'Commerce',
-      shortName: 'Commerce',
-      projects: [
-        'Consumer Behavior in E-Commerce',
-        'FinTech Adoption',
-        'Digital Marketing Analytics'
-      ],
-      workshop: 'Teaching & Workshop: Financial Literacy and Digital Business Skills'
-    },
-    {
-      id: 'earth-science',
-      name: 'Earth Science',
-      shortName: 'Earth Science',
-      projects: [
-        'Groundwater Mapping',
-        'Earthquake Risk Modeling',
-        'Soil Erosion Mapping'
-      ],
-      workshop: 'Teaching & Workshop: Disaster Preparedness and Earth Science Awareness'
-    },
-    {
-      id: 'economics',
-      name: 'Economics',
-      shortName: 'Economics',
-      projects: [
-        'Digital Payment Impact',
-        'Inflation Impact Study',
-        'Microfinance Effectiveness'
-      ],
-      workshop: 'Teaching & Workshop: Economic Awareness and Data-Driven Decision Making'
-    },
-    {
-      id: 'english',
-      name: 'English',
-      shortName: 'English',
-      projects: [
-        'AI-Assisted Textual Analysis',
-        'Shakespeare Adaptations',
-        'Sentiment Analysis of Literature'
-      ],
-      workshop: 'Teaching & Workshop: Communication Skills and AI Tools in Literature'
-    },
-    {
-      id: 'environment-science',
-      name: 'Environment Science',
-      shortName: 'Environment',
-      projects: [
-        'Air & Water Quality Monitoring',
-        'Waste Recycling Study',
-        'Renewable Energy Feasibility'
-      ],
-      workshop: 'Teaching & Workshop: Environmental Awareness and Sustainable Practices'
-    },
-    {
-      id: 'forensic-science',
-      name: 'Forensic Science',
-      shortName: 'Forensic',
-      projects: [
-        'Digital Forensics',
-        'Crime Scene Reconstruction with VR',
-        'Fingerprint Analysis'
-      ],
-      workshop: 'Teaching & Workshop: Cyber Safety and Forensic Awareness'
-    },
-    {
-      id: 'indic-studies',
-      name: 'Indic Studies',
-      shortName: 'Indic Studies',
-      projects: [
-        'Digitization of Manuscripts',
-        'AI-based Cultural Data Mining',
-        'Comparative Literature Analysis'
-      ],
-      workshop: 'Teaching & Workshop: Cultural Heritage and Indic Knowledge Awareness'
-    },
-    {
-      id: 'computer-science',
-      name: 'Institute of Computer Science',
-      shortName: 'Computer Science',
-      projects: [
-        'Cybersecurity Threat Hunting',
-        'AI Chatbot',
-        'Blockchain Records'
-      ],
-      workshop: 'Teaching & Workshop: Coding, Cybersecurity, and AI for Beginners'
-    },
-    {
-      id: 'iips',
-      name: 'International Institute of Professional Studies',
-      shortName: 'IIPS',
-      projects: [
-        'Career Recommendation AI',
-        'Business Simulation Game',
-        'AI Resume Screener'
-      ],
-      workshop: 'Teaching & Workshop: Professional Skills and Technology Awareness'
-    },
-    {
-      id: 'library-science',
-      name: 'JNIBM Library and Information Science',
-      shortName: 'Library Science',
-      projects: [
-        'Smart Digital Library',
-        'QR-Based Access',
-        'Book Recommendation AI'
-      ],
-      workshop: 'Teaching & Workshop: Digital Literacy and Smart Library Tools'
-    },
-    {
-      id: 'mathematics',
-      name: 'Mathematics',
-      shortName: 'Mathematics',
-      projects: [
-        'Epidemic Spread Modeling',
-        'Cryptography',
-        'Machine Learning Math'
-      ],
-      workshop: 'Teaching & Workshop: Applied Math in Real-World Problems'
-    },
-    {
-      id: 'microbiology',
-      name: 'Microbiology and Foodtech',
-      shortName: 'Microbiology',
-      projects: [
-        'Probiotic Food Development',
-        'Antimicrobial Resistance Study',
-        'AI Food Spoilage Detection'
-      ],
-      workshop: 'Teaching & Workshop: Food Safety and Microbiology Awareness'
-    },
-    {
-      id: 'political-science',
-      name: 'Political Science',
-      shortName: 'Political Science',
-      projects: [
-        'Social Media & Voting Study',
-        'Public Opinion Survey',
-        'Policy Analysis'
-      ],
-      workshop: 'Teaching & Workshop: Democracy Awareness and Political Technology'
-    },
-    {
-      id: 'public-administration',
-      name: 'Public Administration',
-      shortName: 'Public Admin',
-      projects: [
-        'E-Governance Dashboard',
-        'Complaint Management',
-        'Service Delivery Efficiency'
-      ],
-      workshop: 'Teaching & Workshop: Good Governance and Public Service Awareness'
-    },
-    {
-      id: 'sanskrit',
-      name: 'Sanskrit',
-      shortName: 'Sanskrit',
-      projects: [
-        'Neural Machine Translation',
-        'Digital Sanskrit Dictionary',
-        'Chatbot'
-      ],
-      workshop: 'Teaching & Workshop: Sanskrit Awareness and Modern Computational Tools'
-    },
-    {
-      id: 'sanskrit-jyotirvigyan',
-      name: 'Sanskrit Jyotirvigyan Ved',
-      shortName: 'Jyotirvigyan',
-      projects: [
-        'Astrological Data Analysis',
-        'ML Horoscope Trends',
-        'Cultural Study'
-      ],
-      workshop: 'Teaching & Workshop: Jyotirvigyan Awareness and Data Science Applications'
-    },
-    {
-      id: 'engineering',
-      name: 'School of Engineering And Technology',
-      shortName: 'Engineering',
-      projects: [
-        'Smart Campus IoT',
-        'Robotics',
-        'AI Traffic Management'
-      ],
-      workshop: 'Teaching & Workshop: Robotics, IoT, and Smart Engineering Awareness'
-    },
-    {
-      id: 'zoology',
-      name: 'Zoology and Biotech',
-      shortName: 'Zoology',
-      projects: [
-        'DNA Barcoding',
-        'Climate Impact on Animals',
-        'Genetic Sequence Bioinformatics'
-      ],
-      workshop: 'Teaching & Workshop: Biodiversity Conservation and Biotech Awareness'
+    // Apply search filter
+    if (searchTerm) {
+      filtered = filtered.filter(project =>
+        project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.departmentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.tools.some(tool => tool.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
     }
-  ];
+
+    // Apply type filter
+    if (selectedFilter !== 'all') {
+      if (selectedFilter === 'workshops') {
+        filtered = filtered.filter(project => project.type === 'workshop');
+      } else if (selectedFilter === 'research') {
+        filtered = filtered.filter(project => project.type === 'research');
+      } else if (selectedFilter === 'short-term') {
+        filtered = filtered.filter(project => project.type === 'short-term');
+      }
+    }
+
+    return filtered;
+  }, [allProjects, searchTerm, selectedFilter]);
+
+  // Get workshop projects for the workshop section
+  const workshopProjects = useMemo(() => {
+    return allProjects.filter(project => project.type === 'workshop');
+  }, [allProjects]);
+
+  const handleBookmark = (projectId: string) => {
+    setBookmarkedProjects(prev => 
+      prev.includes(projectId) 
+        ? prev.filter(id => id !== projectId)
+        : [...prev, projectId]
+    );
+  };
+
+  const handleProjectClick = (project: TopicProject & { departmentName: string; departmentIcon: string }) => {
+    setSelectedProject(project);
+    if (!exploredDepartments.includes(project.departmentName)) {
+      setExploredDepartments(prev => [...prev, project.departmentName]);
+    }
+  };
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case 'Beginner': return 'bg-green-100 text-green-800';
+      case 'Intermediate': return 'bg-yellow-100 text-yellow-800';
+      case 'Advanced': return 'bg-red-100 text-red-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getTypeColor = (type: string) => {
+    switch (type) {
+      case 'workshop': return 'bg-purple-100 text-purple-800';
+      case 'research': return 'bg-blue-100 text-blue-800';
+      case 'short-term': return 'bg-green-100 text-green-800';
+      case 'field-based': return 'bg-orange-100 text-orange-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const ProjectDetailsModal = () => {
+    if (!selectedProject) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          {/* Header */}
+          <div className="p-6 border-b border-gray-200">
+            <div className="flex justify-between items-start">
+              <div className="flex items-center space-x-4">
+                <span className="text-4xl">{selectedProject.departmentIcon}</span>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900">{selectedProject.name}</h3>
+                  <p className="text-gray-600">{selectedProject.departmentName}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            
+            {/* Tags */}
+            <div className="flex items-center space-x-3 mt-4">
+              <span className={`px-3 py-1 rounded-full text-sm font-medium ${getDifficultyColor(selectedProject.difficulty)}`}>
+                {selectedProject.difficulty}
+              </span>
+              <span className={`px-3 py-1 rounded-full text-sm font-medium ${getTypeColor(selectedProject.type)}`}>
+                {selectedProject.type.charAt(0).toUpperCase() + selectedProject.type.slice(1)}
+              </span>
+              <div className="flex items-center text-gray-600 text-sm">
+                <Clock className="h-4 w-4 mr-1" />
+                {selectedProject.duration}
+              </div>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="p-6 space-y-6">
+            {/* Description */}
+            <div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                <Eye className="h-5 w-5 mr-2" />
+                Project Description
+              </h4>
+              <p className="text-gray-600 leading-relaxed">{selectedProject.description}</p>
+            </div>
+
+            {/* Objectives */}
+            <div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                <Target className="h-5 w-5 mr-2" />
+                Objectives
+              </h4>
+              <ul className="space-y-2">
+                {selectedProject.objectives.map((objective, index) => (
+                  <li key={index} className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-gray-600">{objective}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tools & Technologies */}
+            <div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                <Wrench className="h-5 w-5 mr-2" />
+                Tools & Technologies
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedProject.tools.map((tool, index) => (
+                  <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Faculty Guide */}
+            <div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                <User className="h-5 w-5 mr-2" />
+                Faculty Guide
+              </h4>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                    <User className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-gray-900">{selectedProject.facultyGuide.name}</h5>
+                    <p className="text-gray-600 text-sm">{selectedProject.facultyGuide.department}</p>
+                    <div className="flex items-center text-gray-500 text-sm mt-1">
+                      <Mail className="h-4 w-4 mr-1" />
+                      {selectedProject.facultyGuide.email}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Guidance */}
+            <div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                <Award className="h-5 w-5 mr-2" />
+                Guidance & Tips
+              </h4>
+              <div className="space-y-2">
+                {selectedProject.guidance.map((tip, index) => (
+                  <div key={index} className="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-blue-800">{tip}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex space-x-4 pt-4 border-t border-gray-200">
+              <button
+                onClick={() => handleBookmark(selectedProject.id)}
+                className={`flex-1 py-3 px-6 rounded-lg font-medium transition-colors flex items-center justify-center ${
+                  bookmarkedProjects.includes(selectedProject.id)
+                    ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {bookmarkedProjects.includes(selectedProject.id) ? (
+                  <BookmarkCheck className="h-5 w-5 mr-2" />
+                ) : (
+                  <Bookmark className="h-5 w-5 mr-2" />
+                )}
+                {bookmarkedProjects.includes(selectedProject.id) ? 'Bookmarked' : 'Bookmark Project'}
+              </button>
+              <button className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                Apply for Project
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <Layout title="Project Topics">
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Project Topics by Department</h2>
-        <p className="text-gray-600">Browse projects organized by department folders. Each department contains 3 specialized projects + 1 teaching workshop.</p>
-      </div>
+        <div className="flex justify-between items-start mb-6">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Explore Project Topics</h2>
+            <p className="text-gray-600">Discover exciting projects across all departments and find your perfect match.</p>
+          </div>
+          
+          {/* Progress Indicator */}
+          <div className="bg-white rounded-xl shadow-sm p-4 min-w-[200px]">
+            <div className="flex items-center space-x-2 mb-2">
+              <TrendingUp className="h-5 w-5 text-blue-600" />
+              <span className="font-semibold text-gray-900">Your Progress</span>
+            </div>
+            <p className="text-sm text-gray-600">
+              Explored {exploredDepartments.length}/{topicCards.length} departments
+            </p>
+            <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+              <div 
+                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                style={{ width: `${(exploredDepartments.length / topicCards.length) * 100}%` }}
+              ></div>
+            </div>
+          </div>
+        </div>
 
-      {/* Filters */}
-      <div className="mb-8 bg-white rounded-xl shadow-sm p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter by Department</h3>
-        <div className="flex flex-wrap gap-2">
-          {allDepartments.map((dept) => (
-            <button
-              key={dept.id}
-              onClick={() => toggleFilter(dept.shortName)}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                selectedFilters.includes(dept.shortName)
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+        {/* Search and Filter Bar */}
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <input
+              type="text"
+              placeholder="Search projects by name, department, or technology..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          
+          <div className="relative">
+            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <select
+              value={selectedFilter}
+              onChange={(e) => setSelectedFilter(e.target.value)}
+              className="pl-10 pr-8 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white min-w-[180px]"
             >
-              {dept.shortName}
-            </button>
-          ))}
-          {selectedFilters.length > 0 && (
-            <button
-              onClick={() => setSelectedFilters([])}
-              className="px-3 py-2 rounded-lg text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200"
-            >
-              Clear All
-            </button>
-          )}
+              <option value="all">All Projects</option>
+              <option value="workshops">Workshops</option>
+              <option value="research">Research Projects</option>
+              <option value="short-term">Short-Term Projects</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Results Summary */}
+        <div className="mb-6">
+          <p className="text-gray-600">
+            Showing {filteredProjects.length} projects
+            {searchTerm && ` for "${searchTerm}"`}
+            {selectedFilter !== 'all' && ` in ${selectedFilter}`}
+          </p>
         </div>
       </div>
 
-      {/* Department Folders */}
-      <div className="space-y-4">
-        {(selectedFilters.length > 0 ? allDepartments.filter(dept => selectedFilters.includes(dept.shortName)) : allDepartments).map((department) => {
-          const isExpanded = expandedDepartments.includes(department.id);
-          
-          return (
-            <div key={department.id} className="bg-white rounded-xl shadow-sm overflow-hidden">
-              {/* Department Header (Folder) */}
-              <button
-                onClick={() => toggleDepartment(department.id)}
-                className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
-              >
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {filteredProjects.map((project) => (
+          <div
+            key={project.id}
+            className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 cursor-pointer overflow-hidden"
+            onClick={() => handleProjectClick(project)}
+          >
+            {/* Card Header */}
+            <div className="p-6 pb-4">
+              <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center space-x-3">
-                  {isExpanded ? (
-                    <FolderOpen className="h-6 w-6 text-blue-600" />
-                  ) : (
-                    <Folder className="h-6 w-6 text-gray-600" />
-                  )}
-                  <div className="text-left">
-                    <h3 className="text-lg font-semibold text-gray-900">{department.name}</h3>
-                    <p className="text-sm text-gray-500">4 projects available</p>
+                  <span className="text-2xl">{project.departmentIcon}</span>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-lg leading-tight">{project.name}</h3>
+                    <p className="text-sm text-gray-500">{project.departmentName}</p>
                   </div>
                 </div>
-                {isExpanded ? (
-                  <ChevronDown className="h-5 w-5 text-gray-400" />
-                ) : (
-                  <ChevronRight className="h-5 w-5 text-gray-400" />
-                )}
-              </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleBookmark(project.id);
+                  }}
+                  className={`p-2 rounded-full transition-colors ${
+                    bookmarkedProjects.includes(project.id)
+                      ? 'text-yellow-600 bg-yellow-100 hover:bg-yellow-200'
+                      : 'text-gray-400 hover:text-yellow-600 hover:bg-yellow-50'
+                  }`}
+                >
+                  {bookmarkedProjects.includes(project.id) ? (
+                    <BookmarkCheck className="h-5 w-5" />
+                  ) : (
+                    <Bookmark className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
 
-              {/* Department Projects (Folder Contents) */}
-              {isExpanded && (
-                <div className="px-6 pb-6 border-t border-gray-100">
-                  <div className="space-y-3 mt-4">
-                    {/* Regular Projects */}
-                    {department.projects.map((project, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
-                        <FileText className="h-5 w-5 text-blue-600" />
-                        <div className="flex-1">
-                          <h4 className="font-medium text-gray-900">{project}</h4>
-                          <p className="text-sm text-gray-500">Specialized project</p>
-                        </div>
-                      </div>
-                    ))}
-                    
-                    {/* Teaching Workshop */}
-                    <div className="flex items-center space-x-3 p-3 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors cursor-pointer border-l-4 border-orange-500">
-                      <Users className="h-5 w-5 text-orange-600" />
-                      <div className="flex-1">
-                        <h4 className="font-medium text-gray-900">{department.workshop}</h4>
-                        <p className="text-sm text-orange-600">Teaching & Workshop Project</p>
-                      </div>
+              <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(project.difficulty)}`}>
+                  {project.difficulty}
+                </span>
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getTypeColor(project.type)}`}>
+                  {project.type.charAt(0).toUpperCase() + project.type.slice(1)}
+                </span>
+              </div>
+
+              {/* Project Info */}
+              <div className="space-y-2 text-sm text-gray-600">
+                <div className="flex items-center">
+                  <Clock className="h-4 w-4 mr-2" />
+                  <span>Duration: {project.duration}</span>
+                </div>
+                <div className="flex items-center">
+                  <Users className="h-4 w-4 mr-2" />
+                  <span>Guide: {project.facultyGuide.name}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card Footer */}
+            <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center text-sm text-gray-500">
+                  <Star className="h-4 w-4 mr-1" />
+                  <span>{project.tools.length} tools</span>
+                </div>
+                <ChevronRight className="h-4 w-4 text-gray-400" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Workshop Calendar Section */}
+      <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center space-x-3">
+            <Calendar className="h-6 w-6 text-purple-600" />
+            <h3 className="text-xl font-semibold text-gray-900">Upcoming Workshops</h3>
+          </div>
+          <span className="text-sm text-gray-500">{workshopProjects.length} workshops available</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {workshopProjects.map((workshop) => (
+            <div
+              key={workshop.id}
+              className="border border-purple-200 rounded-lg p-4 hover:bg-purple-50 transition-colors cursor-pointer"
+              onClick={() => handleProjectClick(workshop)}
+            >
+              <div className="flex items-center space-x-3 mb-3">
+                <span className="text-xl">{workshop.departmentIcon}</span>
+                <div>
+                  <h4 className="font-medium text-gray-900">{workshop.name}</h4>
+                  <p className="text-sm text-gray-500">{workshop.departmentName}</p>
+                </div>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center text-gray-600">
+                  <Clock className="h-4 w-4 mr-1" />
+                  {workshop.duration}
+                </div>
+                <span className="text-purple-600 font-medium">View Details</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bookmarked Projects Section */}
+      {bookmarkedProjects.length > 0 && (
+        <div className="bg-white rounded-xl shadow-sm p-6">
+          <div className="flex items-center space-x-3 mb-6">
+            <BookmarkCheck className="h-6 w-6 text-yellow-600" />
+            <h3 className="text-xl font-semibold text-gray-900">My Bookmarked Projects</h3>
+            <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm font-medium">
+              {bookmarkedProjects.length}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {allProjects
+              .filter(project => bookmarkedProjects.includes(project.id))
+              .map((project) => (
+                <div
+                  key={project.id}
+                  className="border border-yellow-200 rounded-lg p-4 hover:bg-yellow-50 transition-colors cursor-pointer"
+                  onClick={() => handleProjectClick(project)}
+                >
+                  <div className="flex items-center space-x-3 mb-2">
+                    <span className="text-lg">{project.departmentIcon}</span>
+                    <div>
+                      <h4 className="font-medium text-gray-900">{project.name}</h4>
+                      <p className="text-sm text-gray-500">{project.departmentName}</p>
                     </div>
                   </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(project.difficulty)}`}>
+                      {project.difficulty}
+                    </span>
+                    <span className="text-yellow-600 font-medium">View Details</span>
+                  </div>
                 </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Empty State */}
-      {selectedFilters.length > 0 && allDepartments.filter(dept => selectedFilters.includes(dept.shortName)).length === 0 && (
-        <div className="text-center py-12">
-          <Folder className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No departments found</h3>
-          <p className="text-gray-600">Try adjusting your filters to see more departments.</p>
+              ))}
+          </div>
         </div>
       )}
+
+      {/* Empty State */}
+      {filteredProjects.length === 0 && (
+        <div className="text-center py-12">
+          <div className="text-6xl mb-4">🔍</div>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">No projects found</h3>
+          <p className="text-gray-600 mb-4">
+            Try adjusting your search terms or filters to find more projects.
+          </p>
+          <button
+            onClick={() => {
+              setSearchTerm('');
+              setSelectedFilter('all');
+            }}
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Clear Filters
+          </button>
+        </div>
+      )}
+
+      {/* Project Details Modal */}
+      {selectedProject && <ProjectDetailsModal />}
     </Layout>
   );
 };
