@@ -192,184 +192,345 @@ export const generateAIFeedback = (projectName: string, fileName: string): strin
 // Topic cards for student dashboard
 export const topicCards = [
   {
-    id: 'environmental-studies',
-    title: 'Environmental Studies',
-    description: 'Sustainability and conservation projects',
-    icon: '🌱',
+    id: 'agriculture-science',
+    title: 'Agriculture Science',
+    description: 'Modern farming techniques and agricultural innovation',
+    icon: '🌾',
     color: 'bg-green-100 hover:bg-green-200 text-green-800',
     projects: [
       {
-        id: 'waste-management',
-        name: 'Waste Management Project',
-        description: 'Develop sustainable waste management solutions for local communities.',
+        id: 'precision-farming-iot',
+        name: 'Precision Farming with IoT Sensors',
+        description: 'Implement IoT sensors for precision agriculture to monitor soil conditions, weather patterns, and crop health in real-time.',
         objectives: [
-          'Analyze current waste management practices in local communities',
-          'Design innovative waste segregation systems',
-          'Implement pilot recycling programs',
-          'Measure environmental impact reduction'
+          'Deploy IoT sensors across agricultural fields for data collection',
+          'Develop real-time monitoring dashboard for farmers',
+          'Analyze soil moisture, pH, and nutrient levels',
+          'Create automated irrigation and fertilization systems'
         ],
         duration: '3-4 months',
-        tools: ['Data Collection Tools', 'GIS Mapping', 'Statistical Analysis', 'Community Surveys'],
+        tools: ['IoT Sensors', 'Arduino/Raspberry Pi', 'Mobile App Development', 'Data Analytics', 'Cloud Computing'],
         facultyGuide: {
-          name: 'Dr. Priya Sharma',
-          email: 'priya.sharma@university.edu',
-          department: 'Environmental Studies'
+          name: 'Dr. Rajesh Kumar',
+          email: 'rajesh.kumar@university.edu',
+          department: 'Agriculture Science'
+        },
+        type: 'research' as const,
+        difficulty: 'Advanced' as const,
+        submissionStatus: 'Not Submitted' as const,
+        hasFile: false,
+        fileName: '',
+        comments: ['Focus on practical implementation for farmers', 'Include cost-benefit analysis'],
+        guidance: ['Research IoT applications in agriculture', 'Connect with local farmers', 'Design user-friendly interfaces'],
+        isBookmarked: false
+      },
+      {
+        id: 'organic-fertilizer-study',
+        name: 'Organic Fertilizer Impact Study',
+        description: 'Comprehensive study on the effectiveness of organic fertilizers compared to chemical alternatives on crop yield and soil health.',
+        objectives: [
+          'Compare organic vs chemical fertilizer effects on crop yield',
+          'Analyze long-term soil health impacts',
+          'Study cost-effectiveness for farmers',
+          'Document environmental benefits and challenges'
+        ],
+        duration: '4-6 months',
+        tools: ['Soil Testing Kits', 'Laboratory Equipment', 'Statistical Software', 'Field Measurement Tools'],
+        facultyGuide: {
+          name: 'Dr. Sunita Verma',
+          email: 'sunita.verma@university.edu',
+          department: 'Agriculture Science'
         },
         type: 'research' as const,
         difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
-        comments: ['Focus on practical implementation', 'Include cost-benefit analysis'],
-        guidance: ['Research current waste management practices', 'Identify key stakeholders', 'Propose innovative solutions'],
+        comments: ['Include statistical analysis', 'Document farmer feedback'],
+        guidance: ['Design controlled experiments', 'Collect comprehensive data', 'Analyze long-term impacts'],
         isBookmarked: false
       },
       {
-        id: 'renewable-energy',
-        name: 'Renewable Energy Assessment',
-        description: 'Assess renewable energy potential in rural areas.',
+        id: 'drone-crop-monitoring',
+        name: 'Drone-based Crop Health Monitoring',
+        description: 'Use drone technology with computer vision to monitor crop health, detect diseases, and optimize agricultural practices.',
         objectives: [
-          'Survey renewable energy resources in target areas',
-          'Calculate energy generation potential',
-          'Analyze economic feasibility',
-          'Prepare implementation roadmap'
+          'Deploy drones for aerial crop surveillance',
+          'Implement computer vision for disease detection',
+          'Create crop health mapping systems',
+          'Develop early warning systems for farmers'
         ],
-        duration: '4-5 months',
-        tools: ['Solar Meters', 'Wind Speed Analyzers', 'Economic Modeling Software', 'GIS Tools'],
+        duration: '3-4 months',
+        tools: ['Drones', 'Computer Vision', 'Machine Learning', 'GIS Mapping', 'Image Processing Software'],
         facultyGuide: {
-          name: 'Prof. Rajesh Kumar',
-          email: 'rajesh.kumar@university.edu',
-          department: 'Environmental Studies'
+          name: 'Prof. Amit Gupta',
+          email: 'amit.gupta@university.edu',
+          department: 'Agriculture Science'
         },
-        type: 'field-based' as const,
+        type: 'research' as const,
         difficulty: 'Advanced' as const,
         submissionStatus: 'Not Submitted' as const,
-        hasFile: true,
-        fileName: 'renewable-energy-guidelines.pdf',
-        comments: ['Consider multiple energy sources', 'Include feasibility study'],
-        guidance: ['Study solar and wind potential', 'Analyze energy consumption patterns', 'Calculate return on investment'],
+        hasFile: false,
+        fileName: '',
+        comments: ['Focus on practical applications', 'Include technical specifications'],
+        guidance: ['Learn drone operation and regulations', 'Study computer vision techniques', 'Test with real crops'],
         isBookmarked: false
-      }
-    ]
-  },
-  {
-    id: 'public-health',
-    title: 'Public Health',
-    description: 'Community health and wellness initiatives',
-    icon: '🏥',
-    color: 'bg-red-100 hover:bg-red-200 text-red-800',
-    projects: [
+      },
       {
-        id: 'health-awareness',
-        name: 'Health Awareness Campaign',
-        description: 'Design and implement health awareness campaigns for rural communities.',
+        id: 'sustainable-farming-workshop',
+        name: 'Teaching & Workshop: Sustainable Farming Practices',
+        description: 'Conduct workshops for local farmers on sustainable farming practices and modern agricultural technologies.',
         objectives: [
-          'Identify priority health issues in target communities',
-          'Design culturally appropriate awareness materials',
-          'Conduct community health education sessions',
-          'Measure campaign effectiveness and reach'
+          'Educate farmers about sustainable practices',
+          'Demonstrate modern farming techniques',
+          'Promote eco-friendly agricultural methods',
+          'Create awareness about climate-smart agriculture'
         ],
-        duration: '2-3 months',
-        tools: ['Survey Tools', 'Design Software', 'Presentation Tools', 'Analytics Platforms'],
+        duration: '2-3 weeks',
+        tools: ['Training Materials', 'Demonstration Plots', 'Presentation Tools', 'Agricultural Equipment'],
         facultyGuide: {
-          name: 'Dr. Meera Patel',
-          email: 'meera.patel@university.edu',
-          department: 'Public Health'
+          name: 'Dr. Kavita Sharma',
+          email: 'kavita.sharma@university.edu',
+          department: 'Agriculture Science'
         },
-        type: 'short-term' as const,
+        type: 'workshop' as const,
         difficulty: 'Beginner' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
-        comments: ['Target specific health issues', 'Measure campaign effectiveness'],
-        guidance: ['Identify priority health issues', 'Design engaging materials', 'Plan community outreach events'],
-        isBookmarked: false
-      },
-      {
-        id: 'nutrition-study',
-        name: 'Nutrition Assessment Study',
-        description: 'Conduct nutritional assessment in local schools.',
-        objectives: [
-          'Assess nutritional status of school children',
-          'Identify dietary deficiencies and patterns',
-          'Develop nutrition improvement recommendations',
-          'Create awareness programs for parents and teachers'
-        ],
-        duration: '3-4 months',
-        tools: ['Anthropometric Tools', 'Dietary Assessment Software', 'Statistical Analysis', 'Report Generation'],
-        facultyGuide: {
-          name: 'Dr. Anita Singh',
-          email: 'anita.singh@university.edu',
-          department: 'Public Health'
-        },
-        type: 'research' as const,
-        difficulty: 'Intermediate' as const,
-        submissionStatus: 'Not Submitted' as const,
-        hasFile: true,
-        fileName: 'nutrition-assessment-template.pdf',
-        comments: ['Use standardized assessment tools', 'Include dietary recommendations'],
-        guidance: ['Learn assessment techniques', 'Collect comprehensive data', 'Provide actionable recommendations'],
+        comments: ['Focus on practical demonstrations', 'Include farmer feedback'],
+        guidance: ['Prepare engaging presentations', 'Plan hands-on activities', 'Connect with farming communities'],
         isBookmarked: false
       }
     ]
   },
   {
-    id: 'agriculture',
-    title: 'Agriculture',
-    description: 'Sustainable farming and agricultural innovation',
-    icon: '🌾',
-    color: 'bg-yellow-100 hover:bg-yellow-200 text-yellow-800',
+    id: 'ancient-history',
+    title: 'Ancient History',
+    description: 'Digital preservation and analysis of historical artifacts',
+    icon: '🏛️',
+    color: 'bg-amber-100 hover:bg-amber-200 text-amber-800',
     projects: [
       {
-        id: 'organic-farming',
-        name: 'Organic Farming Initiative',
-        description: 'Promote organic farming practices among local farmers.',
+        id: 'digital-archiving-gis',
+        name: 'Digital Archiving with GIS and 3D Models',
+        description: 'Create digital archives of historical sites using GIS mapping and 3D modeling technologies for preservation and research.',
         objectives: [
-          'Study traditional and modern organic farming methods',
-          'Train local farmers in organic practices',
-          'Monitor crop yield and quality improvements',
-          'Document economic benefits and challenges'
+          'Document historical sites using 3D scanning technology',
+          'Create comprehensive GIS databases of archaeological sites',
+          'Develop virtual reality experiences for historical education',
+          'Build accessible digital archives for researchers'
         ],
-        duration: '4-6 months',
-        tools: ['Soil Testing Kits', 'Organic Fertilizers', 'Yield Measurement Tools', 'Economic Analysis Software'],
+        duration: '4-5 months',
+        tools: ['3D Scanners', 'GIS Software', 'VR Development Tools', 'Database Management', 'Web Development'],
         facultyGuide: {
-          name: 'Prof. Suresh Verma',
-          email: 'suresh.verma@university.edu',
-          department: 'Agriculture'
+          name: 'Dr. Priya Mehta',
+          email: 'priya.mehta@university.edu',
+          department: 'Ancient History'
+        },
+        type: 'research' as const,
+        difficulty: 'Advanced' as const,
+        submissionStatus: 'Not Submitted' as const,
+        hasFile: false,
+        fileName: '',
+        comments: ['Focus on preservation techniques', 'Include accessibility features'],
+        guidance: ['Learn 3D modeling software', 'Study GIS applications', 'Collaborate with museums'],
+        isBookmarked: false
+      },
+      {
+        id: 'oral-history-documentation',
+        name: 'Oral History Documentation',
+        description: 'Collect, digitize, and preserve oral histories from elderly community members to maintain cultural heritage.',
+        objectives: [
+          'Interview elderly community members about historical events',
+          'Record and digitize oral narratives',
+          'Create searchable digital archives',
+          'Develop educational materials from collected stories'
+        ],
+        duration: '3-4 months',
+        tools: ['Audio Recording Equipment', 'Video Cameras', 'Transcription Software', 'Digital Archive Systems'],
+        facultyGuide: {
+          name: 'Prof. Rajesh Gupta',
+          email: 'rajesh.gupta@university.edu',
+          department: 'Ancient History'
         },
         type: 'field-based' as const,
         difficulty: 'Intermediate' as const,
         submissionStatus: 'Not Submitted' as const,
         hasFile: false,
         fileName: '',
-        comments: ['Document farmer feedback', 'Compare yield differences'],
-        guidance: ['Research organic methods', 'Connect with local farmers', 'Monitor implementation progress'],
+        comments: ['Respect cultural sensitivities', 'Ensure proper consent'],
+        guidance: ['Develop interview skills', 'Learn recording techniques', 'Build community trust'],
         isBookmarked: false
       },
       {
-        id: 'crop-monitoring',
-        name: 'Smart Crop Monitoring',
-        description: 'Implement IoT-based crop monitoring systems.',
+        id: 'ai-ancient-text-recognition',
+        name: 'AI-based Ancient Text Recognition',
+        description: 'Develop AI systems to recognize and translate ancient scripts and manuscripts for historical research.',
         objectives: [
-          'Design IoT sensor networks for crop monitoring',
-          'Develop data collection and analysis systems',
-          'Create farmer-friendly mobile applications',
-          'Test system effectiveness in real farm conditions'
+          'Train machine learning models on ancient scripts',
+          'Develop OCR systems for historical manuscripts',
+          'Create translation tools for ancient languages',
+          'Build searchable databases of historical texts'
         ],
-        duration: '5-6 months',
-        tools: ['IoT Sensors', 'Microcontrollers', 'Mobile App Development', 'Data Analytics Platforms'],
+        duration: '4-6 months',
+        tools: ['Machine Learning', 'Computer Vision', 'OCR Technology', 'Natural Language Processing', 'Python'],
         facultyGuide: {
-          name: 'Dr. Amit Gupta',
-          email: 'amit.gupta@university.edu',
-          department: 'Agriculture Technology'
+          name: 'Dr. Anita Sharma',
+          email: 'anita.sharma@university.edu',
+          department: 'Ancient History'
         },
         type: 'research' as const,
         difficulty: 'Advanced' as const,
         submissionStatus: 'Not Submitted' as const,
-        hasFile: true,
-        fileName: 'iot-agriculture-guide.pdf',
-        comments: ['Focus on cost-effective solutions', 'Include technical specifications'],
-        guidance: ['Learn IoT basics', 'Design monitoring system', 'Test with real crops'],
+        hasFile: false,
+        fileName: '',
+        comments: ['Focus on accuracy and preservation', 'Include validation methods'],
+        guidance: ['Study machine learning techniques', 'Collect training data', 'Collaborate with linguists'],
+        isBookmarked: false
+      },
+      {
+        id: 'heritage-awareness-workshop',
+        name: 'Teaching & Workshop: Heritage Awareness',
+        description: 'Conduct workshops to create awareness about cultural heritage preservation and the importance of historical sites.',
+        objectives: [
+          'Educate communities about heritage preservation',
+          'Demonstrate digital tools for historical research',
+          'Create awareness about archaeological importance',
+          'Promote cultural tourism and conservation'
+        ],
+        duration: '2-3 weeks',
+        tools: ['Presentation Materials', 'Digital Tools', 'Educational Resources', 'Community Outreach'],
+        facultyGuide: {
+          name: 'Prof. Meera Joshi',
+          email: 'meera.joshi@university.edu',
+          department: 'Ancient History'
+        },
+        type: 'workshop' as const,
+        difficulty: 'Beginner' as const,
+        submissionStatus: 'Not Submitted' as const,
+        hasFile: false,
+        fileName: '',
+        comments: ['Make it engaging for all ages', 'Include interactive elements'],
+        guidance: ['Prepare visual presentations', 'Plan site visits', 'Engage local communities'],
+        isBookmarked: false
+      }
+    ]
+  }
+];
+
+// Add all remaining 20 departments with similar structure
+export const allDepartments = [
+  ...topicCards,
+  {
+    id: 'botany',
+    title: 'Botany',
+    description: 'Plant biology and botanical research',
+    icon: '🌿',
+    color: 'bg-green-100 hover:bg-green-200 text-green-800',
+    projects: [
+      {
+        id: 'medicinal-plant-survey',
+        name: 'Medicinal Plant Survey',
+        description: 'Comprehensive survey and documentation of medicinal plants in local ecosystems with phytochemical analysis.',
+        objectives: [
+          'Identify and catalog medicinal plants in the region',
+          'Conduct phytochemical screening of plant extracts',
+          'Document traditional uses and modern applications',
+          'Create digital herbarium with GPS mapping'
+        ],
+        duration: '4-6 months',
+        tools: ['Plant Collection Equipment', 'Microscopes', 'Chemical Analysis Kits', 'GPS Devices', 'Database Software'],
+        facultyGuide: {
+          name: 'Dr. Sunita Rao',
+          email: 'sunita.rao@university.edu',
+          department: 'Botany'
+        },
+        type: 'field-based' as const,
+        difficulty: 'Intermediate' as const,
+        submissionStatus: 'Not Submitted' as const,
+        hasFile: false,
+        fileName: '',
+        comments: ['Include conservation recommendations', 'Document sustainable harvesting'],
+        guidance: ['Learn plant identification techniques', 'Study phytochemistry basics', 'Connect with local healers'],
+        isBookmarked: false
+      },
+      {
+        id: 'plant-tissue-culture',
+        name: 'Plant Tissue Culture Experiment',
+        description: 'Develop tissue culture protocols for endangered plant species conservation and mass propagation.',
+        objectives: [
+          'Establish sterile tissue culture protocols',
+          'Optimize growth media for different plant species',
+          'Study regeneration patterns and success rates',
+          'Develop protocols for endangered species conservation'
+        ],
+        duration: '3-4 months',
+        tools: ['Tissue Culture Lab', 'Sterile Equipment', 'Growth Media', 'Microscopes', 'Environmental Controls'],
+        facultyGuide: {
+          name: 'Prof. Kavita Mehta',
+          email: 'kavita.mehta@university.edu',
+          department: 'Botany'
+        },
+        type: 'research' as const,
+        difficulty: 'Intermediate' as const,
+        submissionStatus: 'Not Submitted' as const,
+        hasFile: false,
+        fileName: '',
+        comments: ['Maintain sterile conditions', 'Document all protocols'],
+        guidance: ['Learn sterile techniques', 'Study plant physiology', 'Practice lab procedures'],
+        isBookmarked: false
+      },
+      {
+        id: 'climate-impact-flora',
+        name: 'Climate Change Impact on Flora',
+        description: 'Study the effects of climate change on local plant communities and develop adaptation strategies.',
+        objectives: [
+          'Monitor plant phenology changes due to climate',
+          'Study species distribution shifts',
+          'Analyze adaptation mechanisms in plants',
+          'Develop conservation strategies for vulnerable species'
+        ],
+        duration: '4-5 months',
+        tools: ['Climate Monitoring Equipment', 'GIS Software', 'Statistical Analysis', 'Field Survey Tools'],
+        facultyGuide: {
+          name: 'Dr. Rajesh Kumar',
+          email: 'rajesh.kumar@university.edu',
+          department: 'Botany'
+        },
+        type: 'research' as const,
+        difficulty: 'Advanced' as const,
+        submissionStatus: 'Not Submitted' as const,
+        hasFile: false,
+        fileName: '',
+        comments: ['Include long-term monitoring', 'Focus on conservation'],
+        guidance: ['Study climate science basics', 'Learn ecological monitoring', 'Analyze environmental data'],
+        isBookmarked: false
+      },
+      {
+        id: 'modern-lab-techniques-workshop',
+        name: 'Teaching & Workshop: Modern Lab Techniques',
+        description: 'Train students and researchers in modern botanical laboratory techniques and equipment usage.',
+        objectives: [
+          'Demonstrate advanced microscopy techniques',
+          'Teach molecular biology methods for plants',
+          'Train in tissue culture procedures',
+          'Introduce modern analytical instruments'
+        ],
+        duration: '2-3 weeks',
+        tools: ['Laboratory Equipment', 'Microscopes', 'Training Materials', 'Safety Equipment'],
+        facultyGuide: {
+          name: 'Prof. Anita Verma',
+          email: 'anita.verma@university.edu',
+          department: 'Botany'
+        },
+        type: 'workshop' as const,
+        difficulty: 'Beginner' as const,
+        submissionStatus: 'Not Submitted' as const,
+        hasFile: false,
+        fileName: '',
+        comments: ['Emphasize safety protocols', 'Include hands-on practice'],
+        guidance: ['Prepare detailed protocols', 'Plan practical sessions', 'Ensure safety compliance'],
         isBookmarked: false
       }
     ]
@@ -618,6 +779,7 @@ export const topicCards = [
       }
     ]
   }
+  // Continue with remaining 19 departments...
 ];
 
 // AI Project Ideas and Recommendations
