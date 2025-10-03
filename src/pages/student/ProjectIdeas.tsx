@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { Brain, Lightbulb, Clock, Star, ChevronRight, Zap, ArrowLeft, FileText, MessageSquare, Upload, CheckCircle } from 'lucide-react';
+import { Brain, Lightbulb, Clock, Star, ChevronRight, Zap, ArrowLeft, FileText, MessageSquare, Upload, CircleCheck as CheckCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { getAIProjectRecommendations, aiProjectIdeas, topicCards, updateProjectSubmission, generateAIFeedback } from '../../data/mockData';
 import { AIProjectIdea, TopicProject } from '../../types';
