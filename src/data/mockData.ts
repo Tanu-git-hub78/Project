@@ -2668,17 +2668,34 @@ export const departmentFolders = [
   }
 ];
 
+// src/data/mockData.ts
+
 export function getAnalyticsData() {
-  return {
-    totalDepartments: departments.length,
-    totalProjects: departments.reduce((sum, dept) => sum + dept.projects.length, 0),
-    totalWorkshops: departments.length, // since each has 1
-    projectsPerDepartment: departments.map((dept) => ({
-      department: dept.name,
-      projectCount: dept.projects.length,
-    })),
-  };
+  return [
+    {
+      degree: "B.Sc Computer Science",
+      total: 120,
+      submitted: 90,
+      pending: 30,
+      percentage: Math.round((90 / 120) * 100),
+    },
+    {
+      degree: "B.Com",
+      total: 100,
+      submitted: 70,
+      pending: 30,
+      percentage: Math.round((70 / 100) * 100),
+    },
+    {
+      degree: "B.A English",
+      total: 80,
+      submitted: 50,
+      pending: 30,
+      percentage: Math.round((50 / 80) * 100),
+    },
+  ];
 }
+
 
 // Topic Cards for the new UI
 export const topicCards = departmentFolders.map(dept => ({
