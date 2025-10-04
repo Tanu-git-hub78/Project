@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import Layout from '../../components/Layout';
-import { Search, ListFilter as Filter, Bookmark, BookmarkCheck, Eye, Clock, Users, Star, Calendar, ChevronRight, X, Mail, User, Target, Wrench, Award, TrendingUp } from 'lucide-react';
-import { topicCards } from '../../data/mockData';
+import { Search, Filter, Bookmark, BookmarkCheck, Eye, Clock, Users, Star, Calendar, ChevronRight, X, Mail, User, Target, Wrench, Award, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
+import { departmentFolders } from '../../data/mockData';
 import { TopicProject } from '../../types';
 
 const ProjectTopics: React.FC = () => {
@@ -10,15 +10,16 @@ const ProjectTopics: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<TopicProject | null>(null);
   const [bookmarkedProjects, setBookmarkedProjects] = useState<string[]>([]);
   const [exploredDepartments, setExploredDepartments] = useState<string[]>([]);
+  const [expandedFolders, setExpandedFolders] = useState<string[]>([]);
 
   // Get all projects from all departments
   const allProjects = useMemo(() => {
     const projects: (TopicProject & { departmentName: string; departmentIcon: string })[] = [];
-    topicCards.forEach(department => {
+    departmentFolders.forEach(department => {
       department.projects.forEach(project => {
         projects.push({
           ...project,
-          departmentName: department.title,
+          departmentName: department.name,
           departmentIcon: department.icon
         });
       });
@@ -46,8 +47,8 @@ const ProjectTopics: React.FC = () => {
         filtered = filtered.filter(project => project.type === 'workshop');
       } else if (selectedFilter === 'research') {
         filtered = filtered.filter(project => project.type === 'research');
-      } else if (selectedFilter === 'short-term') {
-        filtered = filtered.filter(project => project.type === 'short-term');
+      } else if (selectedFilter === 'technical') {
+        filtered = filtered.filter(project => project.type === 'technical');
       }
     }
 
@@ -74,6 +75,14 @@ const ProjectTopics: React.FC = () => {
     }
   };
 
+  const handleFolderToggle = (folderId: string) => {
+    setExpandedFolders(prev => 
+      prev.includes(folderId) 
+        ? prev.filter(id => id !== folderId)
+        : [...prev, folderId]
+    );
+  };
+
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Beginner': return 'bg-green-100 text-green-800';
@@ -87,8 +96,7 @@ const ProjectTopics: React.FC = () => {
     switch (type) {
       case 'workshop': return 'bg-purple-100 text-purple-800';
       case 'research': return 'bg-blue-100 text-blue-800';
-      case 'short-term': return 'bg-green-100 text-green-800';
-      case 'field-based': return 'bg-orange-100 text-orange-800';
+      case 'technical': return 'bg-green-100 text-green-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
@@ -246,7 +254,7 @@ const ProjectTopics: React.FC = () => {
         <div className="flex justify-between items-start mb-6">
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Explore Project Topics</h2>
-            <p className="text-gray-600">Discover exciting projects across all departments and find your perfect match.</p>
+            <p className="text-gray-600">Discover exciting projects across all 22 departments and find your perfect match.</p>
           </div>
           
           {/* Progress Indicator */}
@@ -256,12 +264,12 @@ const ProjectTopics: React.FC = () => {
               <span className="font-semibold text-gray-900">Your Progress</span>
             </div>
             <p className="text-sm text-gray-600">
-              Explored {exploredDepartments.length}/{topicCards.length} departments
+              Explored {exploredDepartments.length}/{departmentFolders.length} departments
             </p>
             <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
               <div 
                 className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${(exploredDepartments.length / topicCards.length) * 100}%` }}
+                style={{ width: `${(exploredDepartments.length / departmentFolders.length) * 100}%` }}
               ></div>
             </div>
           </div>
@@ -290,7 +298,7 @@ const ProjectTopics: React.FC = () => {
               <option value="all">All Projects</option>
               <option value="workshops">Workshops</option>
               <option value="research">Research Projects</option>
-              <option value="short-term">Short-Term Projects</option>
+              <option value="technical">Technical Projects</option>
             </select>
           </div>
         </div>
@@ -305,80 +313,135 @@ const ProjectTopics: React.FC = () => {
         </div>
       </div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {filteredProjects.map((project) => (
-          <div
-            key={project.id}
-            className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 cursor-pointer overflow-hidden"
-            onClick={() => handleProjectClick(project)}
-          >
-            {/* Card Header */}
-            <div className="p-6 pb-4">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">{project.departmentIcon}</span>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 text-lg leading-tight">{project.name}</h3>
-                    <p className="text-sm text-gray-500">{project.departmentName}</p>
+      {/* Department Folders */}
+      <div className="space-y-4 mb-12">
+        {departmentFolders.map((department) => {
+          const isExpanded = expandedFolders.includes(department.id);
+          const departmentProjects = department.projects.filter(project => {
+            if (searchTerm) {
+              return project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                     project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                     project.tools.some(tool => tool.toLowerCase().includes(searchTerm.toLowerCase()));
+            }
+            if (selectedFilter !== 'all') {
+              if (selectedFilter === 'workshops') return project.type === 'workshop';
+              if (selectedFilter === 'research') return project.type === 'research';
+              if (selectedFilter === 'technical') return project.type === 'technical';
+            }
+            return true;
+          });
+
+          if (departmentProjects.length === 0 && (searchTerm || selectedFilter !== 'all')) {
+            return null;
+          }
+
+          return (
+            <div key={department.id} className="bg-white rounded-xl shadow-sm overflow-hidden">
+              {/* Folder Header */}
+              <button
+                onClick={() => handleFolderToggle(department.id)}
+                className="w-full p-6 text-left hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <span className="text-3xl">{department.icon}</span>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900">{department.name}</h3>
+                      <p className="text-sm text-gray-600">{department.projects.length} projects available</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="text-sm text-gray-500">
+                      {departmentProjects.length} projects
+                      {searchTerm || selectedFilter !== 'all' ? ` (filtered)` : ''}
+                    </div>
+                    {isExpanded ? (
+                      <ChevronUp className="h-5 w-5 text-gray-400" />
+                    ) : (
+                      <ChevronDown className="h-5 w-5 text-gray-400" />
+                    )}
                   </div>
                 </div>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleBookmark(project.id);
-                  }}
-                  className={`p-2 rounded-full transition-colors ${
-                    bookmarkedProjects.includes(project.id)
-                      ? 'text-yellow-600 bg-yellow-100 hover:bg-yellow-200'
-                      : 'text-gray-400 hover:text-yellow-600 hover:bg-yellow-50'
-                  }`}
-                >
-                  {bookmarkedProjects.includes(project.id) ? (
-                    <BookmarkCheck className="h-5 w-5" />
-                  ) : (
-                    <Bookmark className="h-5 w-5" />
-                  )}
-                </button>
-              </div>
+              </button>
 
-              <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.description}</p>
+              {/* Folder Content */}
+              {isExpanded && (
+                <div className="border-t border-gray-200 bg-gray-50">
+                  <div className="p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {departmentProjects.map((project) => (
+                        <div
+                          key={project.id}
+                          className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 cursor-pointer overflow-hidden"
+                          onClick={() => handleProjectClick({ ...project, departmentName: department.name, departmentIcon: department.icon })}
+                        >
+                          {/* Project Card Header */}
+                          <div className="p-4">
+                            <div className="flex items-start justify-between mb-3">
+                              <h4 className="font-semibold text-gray-900 text-sm leading-tight">{project.name}</h4>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleBookmark(project.id);
+                                }}
+                                className={`p-1 rounded-full transition-colors ${
+                                  bookmarkedProjects.includes(project.id)
+                                    ? 'text-yellow-600 bg-yellow-100 hover:bg-yellow-200'
+                                    : 'text-gray-400 hover:text-yellow-600 hover:bg-yellow-50'
+                                }`}
+                              >
+                                {bookmarkedProjects.includes(project.id) ? (
+                                  <BookmarkCheck className="h-4 w-4" />
+                                ) : (
+                                  <Bookmark className="h-4 w-4" />
+                                )}
+                              </button>
+                            </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(project.difficulty)}`}>
-                  {project.difficulty}
-                </span>
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getTypeColor(project.type)}`}>
-                  {project.type.charAt(0).toUpperCase() + project.type.slice(1)}
-                </span>
-              </div>
+                            <p className="text-gray-600 text-xs mb-3 line-clamp-2">{project.description}</p>
 
-              {/* Project Info */}
-              <div className="space-y-2 text-sm text-gray-600">
-                <div className="flex items-center">
-                  <Clock className="h-4 w-4 mr-2" />
-                  <span>Duration: {project.duration}</span>
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-1 mb-3">
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(project.difficulty)}`}>
+                                {project.difficulty}
+                              </span>
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${getTypeColor(project.type)}`}>
+                                {project.type === 'workshop' ? 'Workshop' : project.type.charAt(0).toUpperCase() + project.type.slice(1)}
+                              </span>
+                            </div>
+
+                            {/* Project Info */}
+                            <div className="space-y-1 text-xs text-gray-600">
+                              <div className="flex items-center">
+                                <Clock className="h-3 w-3 mr-1" />
+                                <span>{project.duration}</span>
+                              </div>
+                              <div className="flex items-center">
+                                <Users className="h-3 w-3 mr-1" />
+                                <span>{project.facultyGuide.name}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Card Footer */}
+                          <div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center text-xs text-gray-500">
+                                <Star className="h-3 w-3 mr-1" />
+                                <span>{project.tools.length} tools</span>
+                              </div>
+                              <ChevronRight className="h-3 w-3 text-gray-400" />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <Users className="h-4 w-4 mr-2" />
-                  <span>Guide: {project.facultyGuide.name}</span>
-                </div>
-              </div>
+              )}
             </div>
-
-            {/* Card Footer */}
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center text-sm text-gray-500">
-                  <Star className="h-4 w-4 mr-1" />
-                  <span>{project.tools.length} tools</span>
-                </div>
-                <ChevronRight className="h-4 w-4 text-gray-400" />
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Workshop Calendar Section */}
@@ -396,18 +459,18 @@ const ProjectTopics: React.FC = () => {
             <div
               key={workshop.id}
               className="border border-purple-200 rounded-lg p-4 hover:bg-purple-50 transition-colors cursor-pointer"
-              onClick={() => handleProjectClick(workshop)}
+              onClick={() => handleProjectClick({ ...workshop, departmentName: workshop.departmentName, departmentIcon: workshop.departmentIcon })}
             >
               <div className="flex items-center space-x-3 mb-3">
                 <span className="text-xl">{workshop.departmentIcon}</span>
                 <div>
-                  <h4 className="font-medium text-gray-900">{workshop.name}</h4>
-                  <p className="text-sm text-gray-500">{workshop.departmentName}</p>
+                  <h4 className="font-medium text-gray-900 text-sm">{workshop.name}</h4>
+                  <p className="text-xs text-gray-500">{workshop.departmentName}</p>
                 </div>
               </div>
-              <div className="flex items-center justify-between text-sm">
+              <div className="flex items-center justify-between text-xs">
                 <div className="flex items-center text-gray-600">
-                  <Clock className="h-4 w-4 mr-1" />
+                  <Clock className="h-3 w-3 mr-1" />
                   {workshop.duration}
                 </div>
                 <span className="text-purple-600 font-medium">View Details</span>
@@ -440,12 +503,12 @@ const ProjectTopics: React.FC = () => {
                   <div className="flex items-center space-x-3 mb-2">
                     <span className="text-lg">{project.departmentIcon}</span>
                     <div>
-                      <h4 className="font-medium text-gray-900">{project.name}</h4>
-                      <p className="text-sm text-gray-500">{project.departmentName}</p>
+                      <h4 className="font-medium text-gray-900 text-sm">{project.name}</h4>
+                      <p className="text-xs text-gray-500">{project.departmentName}</p>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(project.difficulty)}`}>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className={`px-2 py-1 rounded-full font-medium ${getDifficultyColor(project.difficulty)}`}>
                       {project.difficulty}
                     </span>
                     <span className="text-yellow-600 font-medium">View Details</span>
