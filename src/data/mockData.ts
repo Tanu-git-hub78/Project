@@ -2668,6 +2668,18 @@ export const departmentFolders = [
   }
 ];
 
+export function getAnalyticsData() {
+  return {
+    totalDepartments: departments.length,
+    totalProjects: departments.reduce((sum, dept) => sum + dept.projects.length, 0),
+    totalWorkshops: departments.length, // since each has 1
+    projectsPerDepartment: departments.map((dept) => ({
+      department: dept.name,
+      projectCount: dept.projects.length,
+    })),
+  };
+}
+
 // Topic Cards for the new UI
 export const topicCards = departmentFolders.map(dept => ({
   id: dept.id,
