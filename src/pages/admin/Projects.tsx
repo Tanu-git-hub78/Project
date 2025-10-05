@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { FileText, Eye, CircleCheck as CheckCircle, Circle as XCircle, Clock, MessageSquare } from 'lucide-react';
+import { FileText, Eye, CircleCheck as CheckCircle, Circle as XCircle, Clock, MessageSquare, Download } from 'lucide-react';
 import { submissions } from '../../data/mockData';
 import { Submission } from '../../types';
 
@@ -20,6 +20,10 @@ const Projects: React.FC = () => {
     setSelectedProject(null);
     setFeedback('');
     setExaminerComments('');
+  };
+
+  const handleDownloadPDF = (fileName: string) => {
+    // Download logic here
   };
 
   const filteredProjects = projectList.filter(project => 
@@ -99,15 +103,22 @@ const Projects: React.FC = () => {
             <div>
               <h4 className="font-medium text-gray-900 mb-2">Description</h4>
               <p className="text-gray-600 bg-gray-50 p-4 rounded-lg">{selectedProject.description}</p>
+            </div>
+
+            <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
+              <div className="flex items-center space-x-3">
                 <FileText className="h-5 w-5 text-blue-600" />
                 <span className="text-blue-600 font-medium">{selectedProject.fileName}</span>
-                <button
-                  onClick={() => handleDownloadPDF(selectedProject.fileName)}
-                  className="ml-auto text-blue-600 hover:text-blue-800 flex items-center text-sm"
-                >
-                  <Download className="h-4 w-4 mr-1" />
-                  Download
-                </button>
+              </div>
+              <button
+                onClick={() => handleDownloadPDF(selectedProject.fileName)}
+                className="ml-auto text-blue-600 hover:text-blue-800 flex items-center text-sm"
+              >
+                <Download className="h-4 w-4 mr-1" />
+                Download
+              </button>
+            </div>
+
             {selectedProject.feedback && (
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Previous Feedback</h4>
