@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { Upload, FileText, CircleCheck as CheckCircle, CircleAlert as AlertCircle, Lock } from 'lucide-react';
+import { Upload, FileText, CircleCheck as CheckCircle, CircleAlert as AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import { getStudentPaymentStatus, addSubmission } from '../../data/mockData';
+import { addSubmission } from '../../data/mockData';
 
 const ProjectSubmission: React.FC = () => {
   const { user } = useAuth();
-  const paymentStatus = getStudentPaymentStatus(user?.id || '');
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -44,10 +43,6 @@ const ProjectSubmission: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (paymentStatus !== 'paid') {
-      alert('Please complete payment before submitting your project.');
-      return;
-    }
 
     setIsSubmitting(true);
 
@@ -64,7 +59,7 @@ const ProjectSubmission: React.FC = () => {
         fileType: selectedFile?.type || '',
         submissionDate: new Date().toISOString(),
         status: 'pending' as const,
-        paymentStatus: paymentStatus
+        paymentStatus: 'paid' as const // Bypass payment for now
       };
 
       addSubmission(submission);
@@ -76,28 +71,6 @@ const ProjectSubmission: React.FC = () => {
       }, 2000);
     }, 1500);
   };
-
-  if (paymentStatus !== 'paid') {
-    return (
-      <Layout title="Project Submission">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-xl shadow-sm p-8 text-center">
-            <Lock className="h-16 w-16 text-red-600 mx-auto mb-6" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Payment Required</h2>
-            <p className="text-gray-600 mb-6">
-              You need to complete the payment of ₹50 before you can submit your project.
-            </p>
-            <button
-              onClick={() => window.location.href = '/student/payment'}
-              className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Complete Payment
-            </button>
-          </div>
-        </div>
-      </Layout>
-    );
-  }
 
   if (isSuccess) {
     return (
@@ -124,10 +97,10 @@ const ProjectSubmission: React.FC = () => {
             <p className="text-gray-600">Upload your project report with all required details</p>
           </div>
 
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-8">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
             <div className="flex items-center">
-              <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
-              <span className="text-green-800 font-medium">Payment Completed - You can now submit your project</span>
+              <CircleCheck className="h-5 w-5 text-blue-600 mr-3" />
+              <span className="text-blue-800 font-medium">Ready to Submit - Upload your project file and submit</span>
             </div>
           </div>
 

@@ -11,6 +11,7 @@ const Analytics: React.FC = () => {
   const chartData = analyticsData.map(data => ({
     name: data.degree,
     submitted: data.submitted,
+    approved: data.approved,
     pending: data.pending,
     total: data.total,
     percentage: data.percentage
@@ -21,6 +22,11 @@ const Analytics: React.FC = () => {
       name: 'Submitted', 
       value: analyticsData.reduce((sum, data) => sum + data.submitted, 0), 
       color: '#10B981' 
+    },
+    { 
+      name: 'Approved', 
+      value: analyticsData.reduce((sum, data) => sum + data.approved, 0), 
+      color: '#059669' 
     },
     { 
       name: 'Pending', 

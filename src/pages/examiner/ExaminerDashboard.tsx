@@ -93,7 +93,7 @@ const ExaminerDashboard: React.FC = () => {
         <div className="bg-white rounded-xl shadow-sm p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">Completed</h3>
           <div className="text-3xl font-bold text-green-600">
-            {submissions.filter(s => s.department === user?.department && s.vivaMarks).length}
+            {completedEvaluations.length}
           </div>
           <p className="text-gray-600 text-sm mt-1">Evaluations done</p>
         </div>

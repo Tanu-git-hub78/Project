@@ -33,22 +33,6 @@ export const validateCredentials = (username: string, password: string): { isVal
   return { isValid: false };
 };
 
-export const students: Student[] = [
-  {
-    id: '1',
-    username: 'tanu',
-    role: 'student',
-    name: 'Tanu Singh',
-    email: 'tanu@university.edu',
-    college: 'Main Campus',
-    course: 'Computer Science',
-    year: 3,
-    department: 'Computer Science',
-    rollNumber: 'CS2021001',
-    paymentStatus: 'pending'
-  }
-];
-
 export const admins: Admin[] = [
   {
     id: 'admin1',
@@ -2670,32 +2654,271 @@ export const departmentFolders = [
 
 // src/data/mockData.ts
 
-export function getAnalyticsData() {
-  return [
-    {
-      degree: "B.Sc Computer Science",
-      total: 120,
-      submitted: 90,
-      pending: 30,
-      percentage: Math.round((90 / 120) * 100),
-    },
-    {
-      degree: "B.Com",
-      total: 100,
-      submitted: 70,
-      pending: 30,
-      percentage: Math.round((70 / 100) * 100),
-    },
-    {
-      degree: "B.A English",
-      total: 80,
-      submitted: 50,
-      pending: 30,
-      percentage: Math.round((50 / 80) * 100),
-    },
-  ];
-}
+// Mock submitted projects with PDF files
+export let submittedProjects: Submission[] = [
+  {
+    id: 'sub-001',
+    studentId: 'student-001',
+    studentName: 'Tanu Sharma',
+    rollNumber: 'CS2021001',
+    department: 'Computer Science',
+    title: 'AI Chatbot Development for Student Support',
+    description: 'Developed an intelligent chatbot using natural language processing to assist students with academic queries, course information, and general support. The system uses machine learning algorithms to improve response accuracy over time.',
+    facultyName: 'Dr. Priya Singh',
+    fileName: 'AI_Chatbot_Project_Tanu_Sharma.pdf',
+    fileType: 'application/pdf',
+    submissionDate: '2024-01-15T10:30:00Z',
+    status: 'approved' as const,
+    feedback: 'Excellent implementation of NLP concepts. The chatbot shows good understanding of context and provides relevant responses. Well-documented code and comprehensive testing.',
+    examinerComments: 'Strong technical implementation with good user interface design. Demonstrates solid understanding of AI concepts.',
+    vivaMarks: 85,
+    totalScore: 88,
+    paymentStatus: 'paid' as const,
+    category: 'AI & Machine Learning',
+    degree: 'BSc CS'
+  },
+  {
+    id: 'sub-002',
+    studentId: 'student-002',
+    studentName: 'Raj Patel',
+    rollNumber: 'BOT2021002',
+    department: 'Botany',
+    title: 'Medicinal Plant Survey and Documentation',
+    description: 'Comprehensive survey of medicinal plants in the local region, documenting their properties, traditional uses, and potential pharmaceutical applications. Includes detailed botanical analysis and chemical composition studies.',
+    facultyName: 'Dr. Meera Gupta',
+    fileName: 'Medicinal_Plants_Survey_Raj_Patel.pdf',
+    fileType: 'application/pdf',
+    submissionDate: '2024-01-20T14:15:00Z',
+    status: 'approved' as const,
+    feedback: 'Thorough research with excellent field work. The documentation is comprehensive and the analysis of medicinal properties is well-researched. Good use of botanical classification.',
+    examinerComments: 'Impressive field work and documentation. Shows deep understanding of plant biology and medicinal applications.',
+    vivaMarks: 82,
+    totalScore: 85,
+    paymentStatus: 'paid' as const,
+    category: 'Research Project',
+    degree: 'BSc Botany'
+  },
+  {
+    id: 'sub-003',
+    studentId: 'student-003',
+    studentName: 'Shakshi Verma',
+    rollNumber: 'CHEM2021003',
+    department: 'Chemistry',
+    title: 'Biodegradable Plastics Development',
+    description: 'Research and development of biodegradable plastic alternatives using natural polymers. Conducted extensive testing for durability, decomposition rates, and environmental impact assessment.',
+    facultyName: 'Dr. Amit Kumar',
+    fileName: 'Biodegradable_Plastics_Shakshi_Verma.pdf',
+    fileType: 'application/pdf',
+    submissionDate: '2024-01-25T09:45:00Z',
+    status: 'pending' as const,
+    feedback: '',
+    examinerComments: '',
+    vivaMarks: undefined,
+    totalScore: undefined,
+    paymentStatus: 'paid' as const,
+    category: 'Research Project',
+    degree: 'BSc Chemistry'
+  },
+  {
+    id: 'sub-004',
+    studentId: 'student-004',
+    studentName: 'Veer Singh',
+    rollNumber: 'ECO2021004',
+    department: 'Economics',
+    title: 'Impact of Digital Payments on Local Economy',
+    description: 'Comprehensive analysis of how digital payment systems have affected local businesses and consumer behavior. Includes statistical analysis of transaction patterns and economic impact assessment.',
+    facultyName: 'Dr. Sunita Rao',
+    fileName: 'Digital_Payments_Impact_Veer_Singh.pdf',
+    fileType: 'application/pdf',
+    submissionDate: '2024-02-01T16:20:00Z',
+    status: 'approved' as const,
+    feedback: 'Well-structured economic analysis with good use of statistical methods. The research methodology is sound and conclusions are well-supported by data.',
+    examinerComments: 'Strong analytical skills demonstrated. Good understanding of economic principles and their practical applications.',
+    vivaMarks: 78,
+    totalScore: 81,
+    paymentStatus: 'paid' as const,
+    category: 'Research Project',
+    degree: 'BA Economics'
+  },
+  {
+    id: 'sub-005',
+    studentId: 'student-005',
+    studentName: 'Shifa Khan',
+    rollNumber: 'ENV2021005',
+    department: 'Environment Science',
+    title: 'Air and Water Quality Testing Project',
+    description: 'Systematic monitoring and analysis of air and water quality in urban areas. Implemented testing protocols, collected samples, and analyzed pollution levels with recommendations for improvement.',
+    facultyName: 'Dr. Rajesh Sharma',
+    fileName: 'Air_Water_Quality_Testing_Shifa_Khan.pdf',
+    fileType: 'application/pdf',
+    submissionDate: '2024-02-05T11:30:00Z',
+    status: 'rejected' as const,
+    feedback: 'The project shows good effort in data collection, but the analysis needs improvement. Please provide more detailed statistical analysis and clearer conclusions. Resubmission recommended.',
+    examinerComments: 'Good field work but analysis could be more thorough. Needs better interpretation of results.',
+    vivaMarks: 65,
+    totalScore: 68,
+    paymentStatus: 'paid' as const,
+    category: 'Research Project',
+    degree: 'BSc Environmental Science'
+  }
+];
 
+// Update the existing submissions array to use the new submittedProjects
+export const submissions = submittedProjects;
+
+// Function to add new submission
+export const addSubmission = (submission: Omit<Submission, 'id'>) => {
+  const newSubmission: Submission = {
+    ...submission,
+    id: `sub-${Date.now()}`,
+  };
+  submittedProjects.push(newSubmission);
+  return newSubmission;
+};
+
+// Function to update submission status
+export const updateSubmissionStatus = (id: string, status: 'pending' | 'approved' | 'rejected', feedback?: string, examinerComments?: string, vivaMarks?: number) => {
+  const submissionIndex = submittedProjects.findIndex(s => s.id === id);
+  if (submissionIndex !== -1) {
+    submittedProjects[submissionIndex] = {
+      ...submittedProjects[submissionIndex],
+      status,
+      feedback: feedback || submittedProjects[submissionIndex].feedback,
+      examinerComments: examinerComments || submittedProjects[submissionIndex].examinerComments,
+      vivaMarks: vivaMarks || submittedProjects[submissionIndex].vivaMarks,
+      totalScore: vivaMarks ? Math.round(vivaMarks * 1.05) : submittedProjects[submissionIndex].totalScore
+    };
+  }
+};
+
+// Function to get submissions by department (for examiners)
+export const getSubmissionsByDepartment = (department: string) => {
+  return submittedProjects.filter(s => s.department === department);
+};
+
+// Function to get submissions by student
+export const getSubmissionsByStudent = (studentId: string) => {
+  return submittedProjects.filter(s => s.studentId === studentId);
+};
+
+// Update students array to include the mock students
+export const students: Student[] = [
+  {
+    id: 'student-001',
+    username: 'tanu2021',
+    role: 'student' as const,
+    name: 'Tanu Sharma',
+    email: 'tanu.sharma@university.edu',
+    department: 'Computer Science',
+    rollNumber: 'CS2021001',
+    college: 'University College of Science',
+    course: 'Bachelor of Science',
+    year: 3,
+    paymentStatus: 'paid' as const,
+    paymentDate: '2024-01-10',
+    totalScore: 88,
+    degree: 'BSc CS'
+  },
+  {
+    id: 'student-002',
+    username: 'raj2021',
+    role: 'student' as const,
+    name: 'Raj Patel',
+    email: 'raj.patel@university.edu',
+    department: 'Botany',
+    rollNumber: 'BOT2021002',
+    college: 'University College of Science',
+    course: 'Bachelor of Science',
+    year: 3,
+    paymentStatus: 'paid' as const,
+    paymentDate: '2024-01-15',
+    totalScore: 85,
+    degree: 'BSc Botany'
+  },
+  {
+    id: 'student-003',
+    username: 'shakshi2021',
+    role: 'student' as const,
+    name: 'Shakshi Verma',
+    email: 'shakshi.verma@university.edu',
+    department: 'Chemistry',
+    rollNumber: 'CHEM2021003',
+    college: 'University College of Science',
+    course: 'Bachelor of Science',
+    year: 3,
+    paymentStatus: 'paid' as const,
+    paymentDate: '2024-01-20',
+    totalScore: undefined,
+    degree: 'BSc Chemistry'
+  },
+  {
+    id: 'student-004',
+    username: 'veer2021',
+    role: 'student' as const,
+    name: 'Veer Singh',
+    email: 'veer.singh@university.edu',
+    department: 'Economics',
+    rollNumber: 'ECO2021004',
+    college: 'University College of Arts',
+    course: 'Bachelor of Arts',
+    year: 3,
+    paymentStatus: 'paid' as const,
+    paymentDate: '2024-01-25',
+    totalScore: 81,
+    degree: 'BA Economics'
+  },
+  {
+    id: 'student-005',
+    username: 'shifa2021',
+    role: 'student' as const,
+    name: 'Shifa Khan',
+    email: 'shifa.khan@university.edu',
+    department: 'Environment Science',
+    rollNumber: 'ENV2021005',
+    college: 'University College of Science',
+    course: 'Bachelor of Science',
+    year: 3,
+    paymentStatus: 'paid' as const,
+    paymentDate: '2024-01-30',
+    totalScore: 68,
+    degree: 'BSc Environmental Science'
+  },
+  {
+    id: '1',
+    username: 'tanu',
+    role: 'student',
+    name: 'Tanu Singh',
+    email: 'tanu@university.edu',
+    college: 'Main Campus',
+    course: 'Computer Science',
+    year: 3,
+    department: 'Computer Science',
+    rollNumber: 'CS2021001',
+    paymentStatus: 'pending'
+  }
+];
+
+// Update analytics to use live data
+export const getAnalyticsData = () => {
+  // Calculate analytics based on actual submissions and students
+  const degreeStats = degrees.map(degree => {
+    const degreeStudents = students.filter(s => s.degree === degree.shortName);
+    const degreeSubmissions = submittedProjects.filter(s => s.degree === degree.shortName);
+    const approvedSubmissions = degreeSubmissions.filter(s => s.status === 'approved');
+    const pendingSubmissions = degreeSubmissions.filter(s => s.status === 'pending');
+    
+    return {
+      degree: degree.shortName,
+      total: degreeStudents.length,
+      submitted: degreeSubmissions.length,
+      approved: approvedSubmissions.length,
+      pending: pendingSubmissions.length,
+      percentage: degreeStudents.length > 0 ? Math.round((degreeSubmissions.length / degreeStudents.length) * 100) : 0
+    };
+  });
+  
+  return degreeStats;
+};
 
 // Topic Cards for the new UI
 export const topicCards = departmentFolders.map(dept => ({
@@ -2873,8 +3096,6 @@ export const departments: Department[] = [
   }
 ];
 
-export const submissions: Submission[] = [];
-
 export const payments: Payment[] = [];
 
   export const notifications: Notification[] = [
@@ -2943,17 +3164,6 @@ export const updatePaymentStatus = (studentId: string, status: 'paid' | 'pending
       student.paymentDate = new Date().toISOString();
     }
   }
-};
-
-export const addSubmission = (submission: Omit<Submission, 'id'>) => {
-  const newSubmission: Submission = {
-    ...submission,
-    id: Date.now().toString(),
-    category: submission.category || 'General Project',
-    degree: submission.degree || 'Unknown'
-  };
-  submissions.push(newSubmission);
-  return newSubmission;
 };
 
 export const getStudentSubmissions = (studentId: string): Submission[] => {

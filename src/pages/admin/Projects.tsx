@@ -99,8 +99,15 @@ const Projects: React.FC = () => {
             <div>
               <h4 className="font-medium text-gray-900 mb-2">Description</h4>
               <p className="text-gray-600 bg-gray-50 p-4 rounded-lg">{selectedProject.description}</p>
-            </div>
-
+                <FileText className="h-5 w-5 text-blue-600" />
+                <span className="text-blue-600 font-medium">{selectedProject.fileName}</span>
+                <button
+                  onClick={() => handleDownloadPDF(selectedProject.fileName)}
+                  className="ml-auto text-blue-600 hover:text-blue-800 flex items-center text-sm"
+                >
+                  <Download className="h-4 w-4 mr-1" />
+                  Download
+                </button>
             {selectedProject.feedback && (
               <div>
                 <h4 className="font-medium text-gray-900 mb-2">Previous Feedback</h4>

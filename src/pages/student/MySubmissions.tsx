@@ -123,7 +123,7 @@ const MySubmissions: React.FC = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {submissions.map((submission) => (
+              {mySubmissions.map((submission) => (
                 <tr key={submission.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="font-medium text-gray-900">{submission.title}</div>
@@ -155,6 +155,20 @@ const MySubmissions: React.FC = () => {
               ))}
             </tbody>
           </table>
+          
+          {mySubmissions.length === 0 && (
+            <div className="text-center py-12">
+              <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No submissions yet</h3>
+              <p className="text-gray-600 mb-4">You haven't submitted any projects yet.</p>
+              <button
+                onClick={() => window.location.href = '/student/submission'}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              >
+                Submit Your First Project
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
