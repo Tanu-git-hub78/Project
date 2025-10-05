@@ -121,6 +121,11 @@ function App() {
                 <VivaEvaluation />
               </ProtectedRoute>
             } />
+            <Route path="/examiner/submit" element={
+              <ProtectedRoute role="examiner">
+                <VivaEvaluation />
+              </ProtectedRoute>
+            } />
             <Route path="/examiner/profile" element={
               <ProtectedRoute role="examiner">
                 <ExaminerProfile />

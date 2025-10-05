@@ -54,6 +54,64 @@ export const examiners: Examiner[] = [
     email: 'rajesh@university.edu',
     department: 'Computer Science',
     college: 'Main Campus',
+    assignedClasses: ['B.Sc. Computer Science'],
+    evaluationHistory: [
+      {
+        id: 'eval1',
+        studentId: 'student1',
+        studentName: 'Tanu Sharma',
+        rollNumber: 'CS2021001',
+        projectTitle: 'Cybersecurity Awareness Project',
+        vivaMarks: 85,
+        feedback: 'Very good understanding of concepts',
+        comments: 'Needs improvement in presentation skills',
+        evaluationDate: '2024-03-15'
+      },
+      {
+        id: 'eval2',
+        studentId: 'student2',
+        studentName: 'Raj Patel',
+        rollNumber: 'CS2021002',
+        projectTitle: 'Cybersecurity Awareness Project',
+        vivaMarks: 78,
+        feedback: 'Good effort and technical clarity',
+        comments: 'Could add more examples',
+        evaluationDate: '2024-03-16'
+      },
+      {
+        id: 'eval3',
+        studentId: 'student3',
+        studentName: 'Shakshi Verma',
+        rollNumber: 'CS2021003',
+        projectTitle: 'Cybersecurity Awareness Project',
+        vivaMarks: 90,
+        feedback: 'Excellent project explanation',
+        comments: 'Outstanding performance',
+        evaluationDate: '2024-03-17'
+      },
+      {
+        id: 'eval4',
+        studentId: 'student4',
+        studentName: 'Veer Singh',
+        rollNumber: 'CS2021004',
+        projectTitle: 'Cybersecurity Awareness Project',
+        vivaMarks: 70,
+        feedback: 'Average performance',
+        comments: 'Revise theoretical concepts',
+        evaluationDate: '2024-03-18'
+      },
+      {
+        id: 'eval5',
+        studentId: 'student5',
+        studentName: 'Shifa Khan',
+        rollNumber: 'CS2021005',
+        projectTitle: 'Cybersecurity Awareness Project',
+        vivaMarks: 82,
+        feedback: 'Good depth of research',
+        comments: 'Improve time management during viva',
+        evaluationDate: '2024-03-19'
+      }
+    ]
     assignedClasses: ['CS2021', 'CS2022'],
     evaluationHistory: []
   },
@@ -3007,6 +3065,38 @@ export const generateAIFeedback = (projectName: string, fileName: string): strin
   ];
 };
 
+// Add function to submit viva evaluation
+export const submitVivaEvaluation = (studentId: string, marks: number, feedback: string, comments: string) => {
+  // Update the submission in submittedProjects
+  const submissionIndex = submittedProjects.findIndex(s => s.studentId === studentId);
+  if (submissionIndex !== -1) {
+    submittedProjects[submissionIndex].vivaMarks = marks;
+    submittedProjects[submissionIndex].feedback = feedback;
+    submittedProjects[submissionIndex].examinerComments = comments;
+    submittedProjects[submissionIndex].totalScore = marks;
+    submittedProjects[submissionIndex].status = marks >= 70 ? 'approved' : marks >= 50 ? 'pending' : 'rejected';
+  }
+  
+  // Add to examiner's evaluation history
+  const examiner = examiners[0]; // Mrs. Ekta Bisht
+  const student = getAssignedStudents('examiner1').find(s => s.id === studentId);
+  
+  if (student) {
+    const evaluation = {
+      id: `eval_${Date.now()}`,
+      studentId: studentId,
+      studentName: student.name,
+      rollNumber: student.rollNumber,
+      projectTitle: student.assignedProject,
+      vivaMarks: marks,
+      feedback: feedback,
+      comments: comments,
+      evaluationDate: new Date().toISOString().split('T')[0]
+    };
+    
+    examiner.evaluationHistory.push(evaluation);
+  }
+};
 // Colleges data
 export const colleges = [
   {
