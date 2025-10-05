@@ -112,6 +112,7 @@ export const examiners: Examiner[] = [
         evaluationDate: '2024-03-19'
       }
     ]
+      ,
     assignedClasses: ['CS2021', 'CS2022'],
     evaluationHistory: []
   },
