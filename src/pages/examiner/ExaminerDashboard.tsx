@@ -48,6 +48,9 @@ const ExaminerDashboard: React.FC = () => {
   const pendingEvaluations = submissions.filter(s => 
     s.department === user?.department && !s.vivaMarks
   );
+  const completedEvaluations = submissions.filter(s => 
+    s.department === user?.department && s.vivaMarks
+  );
 
   return (
     <Layout title="Examiner Dashboard">
