@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { FileText, Download, Save, Eye, User, CheckCircle, Clock } from 'lucide-react';
+import { FileText, Download, Save, Eye, User, CircleCheck as CheckCircle, Clock } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { getAssignedStudents, submitVivaEvaluation } from '../../data/mockData';
 
