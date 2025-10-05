@@ -66,7 +66,7 @@ export const examiners: Examiner[] = [
         feedback: 'Very good understanding of concepts',
         comments: 'Needs improvement in presentation skills',
         evaluationDate: '2024-03-15'
-      },
+      }
       {
         id: 'eval2',
         studentId: 'student2',
