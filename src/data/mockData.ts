@@ -111,8 +111,7 @@ export const examiners: Examiner[] = [
         comments: 'Improve time management during viva',
         evaluationDate: '2024-03-19'
       }
-    ]
-      ,
+    ],
     assignedClasses: ['CS2021', 'CS2022'],
     evaluationHistory: []
   },
