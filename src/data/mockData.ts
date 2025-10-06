@@ -2925,35 +2925,6 @@ export const students: Student[] = [
     totalScore: 81,
     degree: 'BA Economics'
   },
-  {
-    id: 'student-005',
-    username: 'shifa2021',
-    role: 'student' as const,
-    name: 'Shifa Khan',
-    email: 'shifa.khan@university.edu',
-    department: 'Environment Science',
-    rollNumber: 'ENV2021005',
-    college: 'University College of Science',
-    course: 'Bachelor of Science',
-    year: 3,
-    paymentStatus: 'paid' as const,
-    paymentDate: '2024-01-30',
-    totalScore: 68,
-    degree: 'BSc Environmental Science'
-  },
-  {
-    id: '1',
-    username: 'tanu',
-    role: 'student',
-    name: 'Tanu Singh',
-    email: 'tanu@university.edu',
-    college: 'Main Campus',
-    course: 'Computer Science',
-    year: 3,
-    department: 'Computer Science',
-    rollNumber: 'CS2021001',
-    paymentStatus: 'pending'
-  }
 ];
 
 // Update analytics to use live data
@@ -3097,6 +3068,16 @@ export const submitVivaEvaluation = (studentId: string, marks: number, feedback:
     examiner.evaluationHistory.push(evaluation);
   }
 };
+
+// Function to get assigned students for an examiner
+export const getAssignedStudents = (examinerId: string) => {
+  // Example: Assign only Computer Science students to examiner1
+  if (examinerId === 'examiner1') {
+    return students.filter(s => s.department === 'Computer Science');
+  }
+  return [];
+};
+
 // Colleges data
 export const colleges = [
   {
