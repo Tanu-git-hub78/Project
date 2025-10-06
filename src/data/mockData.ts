@@ -3022,7 +3022,6 @@ export const getStudentSubmissionStatus = (studentId: string): StudentSubmission
   ];
   
   return csStudents;
-};
 
   // Find and update the submission
   const submission = submittedProjects.find(s => s.studentId === studentId);
