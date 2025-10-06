@@ -2993,6 +2993,68 @@ export const getStudentSubmissionStatus = (studentId: string): StudentSubmission
   return studentSubmissions[studentId];
 };
 
+// Get assigned students for examiner
+export const getAssignedStudents = (examinerId: string) => {
+  // For demo purposes, return Computer Science students for Mrs. Ekta Bisht
+  const csStudents = [
+    {
+      id: 'student1',
+      name: 'Tanu Sharma',
+      rollNumber: 'CS2021001',
+      department: 'Computer Science',
+      assignedProject: 'Cybersecurity Awareness Project',
+      status: 'Pending Viva'
+    },
+    {
+      id: 'student2', 
+      name: 'Raj Patel',
+      rollNumber: 'CS2021002',
+      department: 'Computer Science',
+      assignedProject: 'Cybersecurity Awareness Project',
+      status: 'Pending Viva'
+    },
+    {
+      id: 'student3',
+      name: 'Shakshi Verma', 
+      rollNumber: 'CS2021003',
+      department: 'Computer Science',
+      assignedProject: 'Cybersecurity Awareness Project',
+      status: 'Pending Viva'
+    }
+  ];
+  
+  return csStudents;
+};
+
+// Submit viva evaluation
+export const submitVivaEvaluation = (studentId: string, vivaMarks: number, feedback: string, comments: string) => {
+  // Find and update the submission
+  const submission = submittedProjects.find(s => s.studentId === studentId);
+  if (submission) {
+    submission.vivaMarks = vivaMarks;
+    submission.feedback = feedback;
+    submission.examinerComments = comments;
+    submission.status = vivaMarks >= 70 ? 'approved' : vivaMarks >= 50 ? 'pending' : 'rejected';
+  }
+  
+  // Update examiner's evaluation history
+  const examiner = examiners.find(e => e.id === 'examiner1'); // Mrs. Ekta Bisht
+  if (examiner && submission) {
+    const evaluation = {
+      id: Date.now().toString(),
+      studentId: studentId,
+      studentName: submission.studentName,
+      rollNumber: submission.rollNumber,
+      projectTitle: submission.title,
+      vivaMarks: vivaMarks,
+      feedback: feedback,
+      comments: comments,
+      evaluationDate: new Date().toISOString()
+    };
+    examiner.evaluationHistory.push(evaluation);
+  }
+};
+
 export const updateProjectSubmission = (
   studentId: string, 
   topicId: string, 
