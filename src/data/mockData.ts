@@ -2993,8 +2993,6 @@ export const getStudentSubmissionStatus = (studentId: string): StudentSubmission
   return studentSubmissions[studentId];
 };
 
-// Get assigned students for examiner
-export const getAssignedStudents = (examinerId: string) => {
   // For demo purposes, return Computer Science students for Mrs. Ekta Bisht
   const csStudents = [
     {
@@ -3026,8 +3024,6 @@ export const getAssignedStudents = (examinerId: string) => {
   return csStudents;
 };
 
-// Submit viva evaluation
-export const submitVivaEvaluation = (studentId: string, vivaMarks: number, feedback: string, comments: string) => {
   // Find and update the submission
   const submission = submittedProjects.find(s => s.studentId === studentId);
   if (submission) {
