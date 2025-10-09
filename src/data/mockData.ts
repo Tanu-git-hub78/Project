@@ -3023,7 +3023,7 @@ export const getStudentSubmissionStatus = (studentId: string): StudentSubmission
   
   return csStudents;
 
-    ],
+    
     workshop: 'Teaching & Workshop: Sustainable Farming Practices and Agri-Tech Awareness'
   },
   {
