@@ -19,19 +19,10 @@ const ExaminerProfile: React.FC = () => {
   }
 
   const totalEvaluations = examinerData.evaluationHistory.length;
- const averageMarks = totalEvaluations > 0 
-  ? Math.round(
-      examinerData.evaluationHistory.reduce(
-        (sum, evaluation) => sum + evaluation.vivaMarks,
-        0
-      ) / totalEvaluations
-    )
-  : 0;
-
-const excellentPerformances =
-  examinerData.evaluationHistory.filter(
-    evaluation => evaluation.vivaMarks >= 85
-  ).length;
+  const averageMarks = totalEvaluations > 0 
+    ? Math.round(examinerData.evaluationHistory.reduce((sum, eval) => sum + eval.vivaMarks, 0) / totalEvaluations)
+    : 0;
+  const excellentPerformances = examinerData.evaluationHistory.filter(eval => eval.vivaMarks >= 85).length;
 
   return (
     <Layout title="Examiner Profile">

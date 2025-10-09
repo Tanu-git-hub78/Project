@@ -51,12 +51,9 @@ const Notifications: React.FC = () => {
           : n
       ));
     } else {
-      const newNotification: Notification = {
+      const newNotification: AdminNotification = {
         id: Date.now().toString(),
         ...formData,
-        targetRole: 'all',
-        department: undefined,
-        isImportant: false,
         createdDate: new Date().toISOString().split('T')[0],
         isActive: true
       };
