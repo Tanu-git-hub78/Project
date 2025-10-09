@@ -270,10 +270,6 @@ export const departmentFolders = [
           'Document best practices for future reference'
         ]
       }
-    ]
-  },
-  {
-    id: 'ancient-history',
     name: 'Ancient History',
     icon: '🏛️',
     color: 'bg-amber-100 hover:bg-amber-200 text-amber-800',
