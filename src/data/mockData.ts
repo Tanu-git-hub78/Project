@@ -3034,7 +3034,7 @@ export const getStudentSubmissionStatus = (studentId: string): StudentSubmission
   
 
     name: 'South Campus',
-    location: 'South District',
+    location; 'South District',
     students: 2200,
     established: '1990'
   }
