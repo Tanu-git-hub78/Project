@@ -3023,34 +3023,6 @@ export const getStudentSubmissionStatus = (studentId: string): StudentSubmission
   
   return csStudents;
 
-  // Find and update the submission
-  const submission = submittedProjects.find(s => s.studentId === studentId);
-  if (submission) {
-    submission.vivaMarks = vivaMarks;
-    submission.feedback = feedback;
-    submission.examinerComments = comments;
-    submission.status = vivaMarks >= 70 ? 'approved' : vivaMarks >= 50 ? 'pending' : 'rejected';
-  }
-  
-
-    name: 'South Campus',
-    location; 'South District',
-    students: 2200,
-    established: '1990'
-  }
-];
-
-// Departments data
-export const departments: Department[] = [
-  {
-    id: 'agriculture-science',
-    name: 'Agriculture Science',
-    shortName: 'Agriculture',
-    topics: [],
-    projects: [
-      'Precision Farming with IoT Sensors',
-      'Organic Fertilizer Impact Study',
-      'Drone-based Crop Health Monitoring'
     ],
     workshop: 'Teaching & Workshop: Sustainable Farming Practices and Agri-Tech Awareness'
   },
