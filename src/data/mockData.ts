@@ -275,3 +275,40 @@ export const addSubmission = (studentId: string, projectTitle: string, fileUrl: 
   submissions.push(submission);
   return submission;
 };
+
+// ✅ Department Folders — used for organizing project ideas by department
+export const departmentFolders = [
+  {
+    id: "dept-cs",
+    name: "Computer Science",
+    icon: "💻",
+    color: "#4F46E5",
+    projects: [
+      "Cybersecurity Awareness Project",
+      "AI-based Student Evaluation System",
+      "IoT-based Smart Campus Management",
+    ],
+  },
+  {
+    id: "dept-botany",
+    name: "Botany",
+    icon: "🌿",
+    color: "#16A34A",
+    projects: [
+      "Organic Fertilizer Impact Study",
+      "Medicinal Plant Classification Using AI",
+      "Sustainable Greenhouse Management",
+    ],
+  },
+  {
+    id: "dept-chem",
+    name: "Chemistry",
+    icon: "⚗️",
+    color: "#F59E0B",
+    projects: [
+      "Chemical Waste Management System",
+      "Green Chemistry Practices",
+      "Nanomaterial Synthesis Project",
+    ],
+  },
+];
