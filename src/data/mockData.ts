@@ -365,12 +365,7 @@ if (examinerId === "examiner1") {
 };
 
 
-  return {
-    success: true,
-    message: `Viva evaluation submitted successfully for student ID: ${studentId}`,
-  };
-    ;
-
+ 
 export const submitVivaEvaluation = (
   studentId: string,
   vivaMarks: number,
