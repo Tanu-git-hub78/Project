@@ -1,3 +1,21 @@
+// --- Notifications Data ---
+export const notifications = [
+  {
+    id: 1,
+    title: "Project Submitted",
+    message: "Your field project has been successfully submitted.",
+    time: "2 hours ago",
+    userType: "student",
+  },
+  {
+    id: 2,
+    title: "Evaluation Assigned",
+    message: "You’ve been assigned to evaluate a new project.",
+    time: "1 day ago",
+    userType: "examiner",
+  },
+];
+
 // Mock data for the Student Project Management System
 
 export interface Student {
