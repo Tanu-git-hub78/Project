@@ -329,3 +329,5 @@ export const updatePaymentStatus = (studentId: string, newStatus: string) => {
   console.log(`✅ Payment status for student ${studentId} updated to: ${newStatus}`);
   // Normally you'd update your backend or database here
 };
+
+console.log("✅ mockData exports loaded: ", { getStudentPaymentStatus, updatePaymentStatus });
