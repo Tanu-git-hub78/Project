@@ -346,3 +346,39 @@ export const adminNotifications = [
     type: "success",
   },
 ];
+
+// ✅ --- Examiner: Get Assigned Students ---
+export const getAssignedStudents = (examinerId: string) => {
+  // Example mock student list
+  const students = [
+    { id: "stu1", name: "Aman Sharma", department: "Computer Science", vivaMarks: null },
+    { id: "stu2", name: "Neha Patel", department: "Computer Science", vivaMarks: null },
+    { id: "stu3", name: "Ravi Verma", department: "Computer Science", vivaMarks: null },
+  ];
+
+  // You can filter by examinerId if needed
+  if (examinerId === "examiner1") {
+    return students;
+  }
+  return [];
+};
+
+// ✅ --- Examiner: Submit Viva Evaluation ---
+export const submitVivaEvaluation = (
+  studentId: string,
+  vivaMarks: number,
+  feedback: string,
+  comments: string
+) => {
+  console.log("✅ Viva Evaluation Submitted:", {
+    studentId,
+    vivaMarks,
+    feedback,
+    comments,
+  });
+
+  return {
+    success: true,
+    message: `Viva evaluation submitted successfully for student ID: ${studentId}`,
+  };
+};
