@@ -31,30 +31,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(false);
   }, []);
 
-  const login = (username: string, password: string): boolean => {
-    const validation = validateCredentials(username, password);
-    
-    if (validation.isValid && validation.userId && validation.role) {
-      let userData: User | undefined;
-      
-      if (validation.role === "student") {
-  userData = students.find(s => s.id === validation.userId);
-} else if (validation.role === "admin") {
-  userData = admins.find(a => a.id === validation.userId);
-} else if (validation.role === "examiner") {
-  userData = examiners.find(e => e.id === validation.userId);
-}
+ const login = (username: string, password: string): boolean => {
+  const validation = validateCredentials(username, password);
 
-      
-      if (userData) {
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
-        return true;
-      }
+  if (validation?.isValid && validation.userId && validation.role) {
+    let userData: User | undefined;
+
+    if (validation.role === "student") {
+      userData = students.find(s => s.id === validation.userId);
+    } else if (validation.role === "admin") {
+      userData = admins.find(a => a.id === validation.userId);
+    } else if (validation.role === "examiner") {
+      userData = examiners.find(e => e.id === validation.userId);
     }
 
-    return false;
-  };
+    // store userData in context or session if needed
+    return true; // login successful
+  }
+
+  return false; // login failed
+};
+
 
   const logout = () => {
     setUser(null);
