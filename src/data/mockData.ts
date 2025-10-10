@@ -357,12 +357,12 @@ export const getAssignedStudents = (examinerId: string) => {
   ];
 
   // You can filter by examinerId if needed
-  if (examinerId === "examiner1") {
-    return students;
+  
+if (examinerId === "examiner1") {
+    return students.filter(s => s.department === 'Computer Science');
   }
   return [];
 };
-
 
 
   return {
