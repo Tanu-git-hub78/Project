@@ -371,11 +371,25 @@ if (examinerId === "examiner1") {
   };
     ;
 
-  // Example: filter based on examiner
-  if (examinerId === "examiner1") {
-    return students;
+export const submitVivaEvaluation = (
+  studentId: string,
+  vivaMarks: number,
+  feedback: string,
+  examinerComments: string
+) => {
+  const submission = submittedProjects.find(s => s.studentId === studentId);
+  if (submission) {
+    submission.vivaMarks = vivaMarks;
+    submission.feedback = feedback;
+    submission.examinerComments = examinerComments;
+    submission.status =
+      vivaMarks >= 70 ? 'approved' : vivaMarks >= 50 ? 'pending' : 'rejected';
   }
-  return [];
-;
+
+  return {
+    success: true,
+    message: `Viva evaluation submitted successfully for student ID: ${studentId}`,
+  };
+};
 
 
