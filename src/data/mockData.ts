@@ -314,16 +314,6 @@ export const topicCards = departmentFolders.map(dept => ({
 }));
 console.log("✅ departmentFolders loaded", departmentFolders.length);
 
-// ✅ --- Payment Status Mock Functions ---
-
-// Get payment status for a specific student
-export const getStudentPaymentStatus = (studentId: string) => {
-  const statusList = ["Paid", "Pending", "Overdue"];
-  const randomStatus = statusList[Math.floor(Math.random() * statusList.length)];
-  console.log(`💰 Payment status for ${studentId}: ${randomStatus}`);
-  return randomStatus;
-};
-
 // Update payment status for a specific student
 export const updatePaymentStatus = (studentId: string, newStatus: string) => {
   console.log(`✅ Payment status for student ${studentId} updated to: ${newStatus}`);
