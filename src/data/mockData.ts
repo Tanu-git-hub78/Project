@@ -314,3 +314,7 @@ export const topicCards = departmentFolders.map(dept => ({
 }));
 console.log("✅ departmentFolders loaded", departmentFolders.length);
 
+export const updatePaymentStatus = (studentId: number, status: string) => {
+  console.log(`Updating payment status for student ${studentId} to ${status}`);
+  // You can later replace this with real logic or mock data update
+};
