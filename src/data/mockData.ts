@@ -321,3 +321,28 @@ export const updatePaymentStatus = (studentId: string, newStatus: string) => {
 };
 
 console.log("✅ mockData exports loaded: ", { getStudentPaymentStatus, updatePaymentStatus });
+
+// ✅ --- Admin Notifications Mock Data ---
+export const adminNotifications = [
+  {
+    id: 1,
+    title: "System Update Completed",
+    message: "The university system has been successfully updated to version 2.1.",
+    date: "2025-10-10",
+    type: "info",
+  },
+  {
+    id: 2,
+    title: "Pending Viva Reports",
+    message: "3 colleges have not yet submitted their viva evaluation reports.",
+    date: "2025-10-08",
+    type: "warning",
+  },
+  {
+    id: 3,
+    title: "New Project Submissions",
+    message: "12 new student project submissions are awaiting review.",
+    date: "2025-10-07",
+    type: "success",
+  },
+];
