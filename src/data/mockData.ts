@@ -276,6 +276,8 @@ export const addSubmission = (studentId: string, projectTitle: string, fileUrl: 
   return submission;
 };
 
+export const topicCards = departmentFolders.map(...)
+
 // ✅ Department Folders — used for organizing project ideas by department
 export const departmentFolders = [
   {
