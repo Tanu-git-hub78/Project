@@ -1,1 +1,235 @@
-{"code":"rate-limited","message":"You have hit the rate limit. Please upgrade to keep chatting.","providerLimitHit":false,"isRetryable":true}
+// Mock data for the Student Project Management System
+
+export interface Student {
+  id: string;
+  name: string;
+  email: string;
+  rollNumber: string;
+  college: string;
+  degree: string;
+  year: number;
+  cgpa: number;
+  phone: string;
+  projectTitle?: string;
+  projectDescription?: string;
+  projectStatus: 'not_started' | 'in_progress' | 'submitted' | 'evaluated';
+  submissionDate?: string;
+  vivaDate?: string;
+  vivaMarks?: number;
+  feedback?: string;
+  paymentStatus: 'pending' | 'completed';
+  documents?: {
+    synopsis?: string;
+    report?: string;
+    presentation?: string;
+  };
+}
+
+export interface Admin {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin';
+}
+
+export interface Examiner {
+  id: string;
+  name: string;
+  email: string;
+  department: string;
+  college: string;
+  assignedClasses: string[];
+  evaluationHistory: EvaluationRecord[];
+}
+
+export interface EvaluationRecord {
+  id: string;
+  studentName: string;
+  rollNumber: string;
+  projectTitle: string;
+  vivaMarks: number;
+  feedback: string;
+  comments?: string;
+  evaluationDate: string;
+}
+
+export interface ProjectTopic {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  technologies: string[];
+  estimatedDuration: string;
+  prerequisites: string[];
+}
+
+// Mock Students Data
+export const students: Student[] = [
+  {
+    id: 'student1',
+    name: 'Rahul Sharma',
+    email: 'rahul.sharma@student.edu',
+    rollNumber: 'CS2021001',
+    college: 'Delhi Technical University',
+    degree: 'B.Tech Computer Science',
+    year: 4,
+    cgpa: 8.5,
+    phone: '+91-9876543210',
+    projectTitle: 'AI-Powered Student Management System',
+    projectDescription: 'A comprehensive system using machine learning to manage student data and predict academic performance.',
+    projectStatus: 'submitted',
+    submissionDate: '2024-01-15',
+    vivaDate: '2024-01-25',
+    vivaMarks: 85,
+    feedback: 'Excellent implementation with innovative features.',
+    paymentStatus: 'completed',
+    documents: {
+      synopsis: 'synopsis_rahul.pdf',
+      report: 'report_rahul.pdf',
+      presentation: 'presentation_rahul.pptx'
+    }
+  },
+  {
+    id: 'student2',
+    name: 'Priya Patel',
+    email: 'priya.patel@student.edu',
+    rollNumber: 'CS2021002',
+    college: 'Mumbai Institute of Technology',
+    degree: 'B.Tech Computer Science',
+    year: 4,
+    cgpa: 9.2,
+    phone: '+91-9876543211',
+    projectTitle: 'E-Commerce Platform with Blockchain',
+    projectDescription: 'A secure e-commerce platform implementing blockchain technology for transparent transactions.',
+    projectStatus: 'in_progress',
+    paymentStatus: 'completed'
+  },
+  {
+    id: 'student3',
+    name: 'Amit Kumar',
+    email: 'amit.kumar@student.edu',
+    rollNumber: 'CS2021003',
+    college: 'Bangalore Engineering College',
+    degree: 'B.Tech Computer Science',
+    year: 4,
+    cgpa: 7.8,
+    phone: '+91-9876543212',
+    projectTitle: 'IoT-Based Smart Home System',
+    projectDescription: 'An Internet of Things solution for home automation and energy management.',
+    projectStatus: 'evaluated',
+    submissionDate: '2024-01-10',
+    vivaDate: '2024-01-20',
+    vivaMarks: 78,
+    feedback: 'Good technical implementation, needs improvement in documentation.',
+    paymentStatus: 'completed'
+  }
+];
+
+// Mock Admins Data
+export const admins: Admin[] = [
+  {
+    id: 'admin1',
+    name: 'Dr. Rajesh Gupta',
+    email: 'admin@university.edu',
+    role: 'admin'
+  }
+];
+
+// Mock Examiners Data
+export const examiners: Examiner[] = [
+  {
+    id: 'examiner1',
+    name: 'Prof. Sunita Mehta',
+    email: 'sunita.mehta@university.edu',
+    department: 'Computer Science',
+    college: 'Delhi Technical University',
+    assignedClasses: ['B.Tech CS Final Year', 'M.Tech CS'],
+    evaluationHistory: [
+      {
+        id: 'eval1',
+        studentName: 'Rahul Sharma',
+        rollNumber: 'CS2021001',
+        projectTitle: 'AI-Powered Student Management System',
+        vivaMarks: 85,
+        feedback: 'Excellent implementation with innovative features.',
+        comments: 'Student demonstrated strong understanding of AI concepts.',
+        evaluationDate: '2024-01-25'
+      },
+      {
+        id: 'eval2',
+        studentName: 'Amit Kumar',
+        rollNumber: 'CS2021003',
+        projectTitle: 'IoT-Based Smart Home System',
+        vivaMarks: 78,
+        feedback: 'Good technical implementation, needs improvement in documentation.',
+        comments: 'Hardware integration was well done.',
+        evaluationDate: '2024-01-20'
+      }
+    ]
+  }
+];
+
+// Mock Project Topics
+export const projectTopics: ProjectTopic[] = [
+  {
+    id: 'topic1',
+    title: 'Machine Learning for Healthcare',
+    description: 'Develop ML models for disease prediction and diagnosis',
+    category: 'Artificial Intelligence',
+    difficulty: 'Advanced',
+    technologies: ['Python', 'TensorFlow', 'Scikit-learn', 'Pandas'],
+    estimatedDuration: '6-8 months',
+    prerequisites: ['Machine Learning Basics', 'Python Programming', 'Statistics']
+  },
+  {
+    id: 'topic2',
+    title: 'Blockchain-based Voting System',
+    description: 'Create a secure and transparent voting system using blockchain',
+    category: 'Blockchain',
+    difficulty: 'Intermediate',
+    technologies: ['Solidity', 'Web3.js', 'React', 'Node.js'],
+    estimatedDuration: '4-6 months',
+    prerequisites: ['Blockchain Fundamentals', 'JavaScript', 'Cryptography']
+  },
+  {
+    id: 'topic3',
+    title: 'Mobile App for Food Delivery',
+    description: 'Build a complete food delivery application with real-time tracking',
+    category: 'Mobile Development',
+    difficulty: 'Intermediate',
+    technologies: ['React Native', 'Firebase', 'Google Maps API', 'Node.js'],
+    estimatedDuration: '4-5 months',
+    prerequisites: ['Mobile Development', 'JavaScript', 'Database Design']
+  }
+];
+
+// Authentication function
+export const validateCredentials = (email: string, password: string, userType: 'student' | 'admin' | 'examiner') => {
+  // Simple mock validation - in real app, this would be handled by backend
+  if (userType === 'student') {
+    const student = students.find(s => s.email === email);
+    return student ? { ...student, role: 'student' } : null;
+  } else if (userType === 'admin') {
+    const admin = admins.find(a => a.email === email);
+    return admin ? { ...admin, role: 'admin' } : null;
+  } else if (userType === 'examiner') {
+    const examiner = examiners.find(e => e.email === email);
+    return examiner ? { ...examiner, role: 'examiner' } : null;
+  }
+  return null;
+};
+
+// Analytics data
+export const getAnalyticsData = () => {
+  return {
+    totalStudents: students.length,
+    totalProjects: students.filter(s => s.projectTitle).length,
+    completedProjects: students.filter(s => s.projectStatus === 'evaluated').length,
+    averageMarks: students.filter(s => s.vivaMarks).reduce((sum, s) => sum + (s.vivaMarks || 0), 0) / students.filter(s => s.vivaMarks).length || 0,
+    paymentStats: {
+      completed: students.filter(s => s.paymentStatus === 'completed').length,
+      pending: students.filter(s => s.paymentStatus === 'pending').length
+    }
+  };
+};
