@@ -363,19 +363,7 @@ export const getAssignedStudents = (examinerId: string) => {
   return [];
 };
 
-// ✅ --- Examiner: Submit Viva Evaluation ---
-export const submitVivaEvaluation = (
-  studentId: string,
-  vivaMarks: number,
-  feedback: string,
-  comments: string
-) => {
-  console.log("✅ Viva Evaluation Submitted:", {
-    studentId,
-    vivaMarks,
-    feedback,
-    comments,
-  });
+
 
   return {
     success: true,
@@ -391,13 +379,4 @@ export const submitVivaEvaluation = (
   return [];
 ;
 
-// ✅ Function to submit viva evaluation
-export const submitVivaEvaluation = (
-  studentId: string,
-  vivaMarks: number,
-  feedback: string,
-  comments: string
-) => {
-  console.log("Submitted Viva Evaluation:", { studentId, vivaMarks, feedback, comments });
-  return { success: true };
-};
+
