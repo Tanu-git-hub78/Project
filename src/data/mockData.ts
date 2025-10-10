@@ -383,13 +383,6 @@ export const submitVivaEvaluation = (
   };
 };
 
-// ✅ Function to get assigned students for an examiner
-export const getAssignedStudents = (examinerId: string) => {
-  const students = [
-    { id: "stu1", name: "Aman Sharma", department: "Computer Science" },
-    { id: "stu2", name: "Neha Patel", department: "Computer Science" },
-    { id: "stu3", name: "Ravi Verma", department: "Computer Science" },
-  ];
 
   // Example: filter based on examiner
   if (examinerId === "examiner1") {
