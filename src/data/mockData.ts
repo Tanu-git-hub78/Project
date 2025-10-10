@@ -276,41 +276,31 @@ export const addSubmission = (studentId: string, projectTitle: string, fileUrl: 
   return submission;
 };
 
-// ✅ Department Folders — used for organizing project ideas by department
 export const departmentFolders = [
   {
-    id: "dept-cs",
-    name: "Computer Science",
-    icon: "💻",
-    color: "#4F46E5",
+    name: "Agriculture Science",
     projects: [
-      "Cybersecurity Awareness Project",
-      "AI-based Student Evaluation System",
-      "IoT-based Smart Campus Management",
-    ],
-  },
-  {
-    id: "dept-botany",
-    name: "Botany",
-    icon: "🌿",
-    color: "#16A34A",
-    projects: [
+      "Precision Farming with IoT Sensors",
       "Organic Fertilizer Impact Study",
-      "Medicinal Plant Classification Using AI",
-      "Sustainable Greenhouse Management",
-    ],
+      "Drone-based Crop Health Monitoring"
+    ]
   },
   {
-    id: "dept-chem",
-    name: "Chemistry",
-    icon: "⚗️",
-    color: "#F59E0B",
+    name: "Ancient History",
     projects: [
-      "Chemical Waste Management System",
-      "Green Chemistry Practices",
-      "Nanomaterial Synthesis Project",
-    ],
+      "Cultural Heritage Documentation",
+      "Archaeological Site Preservation",
+      "Virtual Museum Creation"
+    ]
   },
+  {
+    name: "Botany",
+    projects: [
+      "Plant Growth under Different Light Conditions",
+      "Herbal Medicine Study",
+      "Botanical Garden Digital Catalog"
+    ]
+  }
 ];
 
 // ✅ Create topic cards from department folders
