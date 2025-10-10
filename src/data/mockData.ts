@@ -389,7 +389,7 @@ export const submitVivaEvaluation = (
     return students;
   }
   return [];
-};
+;
 
 // ✅ Function to submit viva evaluation
 export const submitVivaEvaluation = (
