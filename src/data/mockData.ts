@@ -369,7 +369,6 @@ export const getAssignedStudents = (examinerId: string) => {
     success: true,
     message: `Viva evaluation submitted successfully for student ID: ${studentId}`,
   };
-};
 
 
   // Example: filter based on examiner
