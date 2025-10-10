@@ -1,35 +1,3 @@
-export const notifications = [
-  {
-    id: 1,
-    message: "New project assigned to you",
-    time: "2 hours ago",
-    type: "info",
-  },
-  {
-    id: 2,
-    message: "Your evaluation deadline is tomorrow",
-    time: "1 day ago",
-    type: "warning",
-  },
-];
-
-// --- Notifications Data ---
-export const notifications = [
-  {
-    id: 1,
-    title: "Project Submitted",
-    message: "Your field project has been successfully submitted.",
-    time: "2 hours ago",
-    userType: "student",
-  },
-  {
-    id: 2,
-    title: "Evaluation Assigned",
-    message: "You’ve been assigned to evaluate a new project.",
-    time: "1 day ago",
-    userType: "examiner",
-  },
-];
 
 // Mock data for the Student Project Management System
 
@@ -164,6 +132,24 @@ export const students: Student[] = [
     feedback: 'Good technical implementation, needs improvement in documentation.',
     paymentStatus: 'completed'
   }
+];
+
+// ✅ Notification mock data
+export const notifications = [
+  {
+    id: 1,
+    title: "Project Submitted",
+    message: "Your field project has been successfully submitted.",
+    time: "2 hours ago",
+    userType: "student",
+  },
+  {
+    id: 2,
+    title: "Evaluation Assigned",
+    message: "You’ve been assigned to evaluate a new project.",
+    time: "1 day ago",
+    userType: "examiner",
+  },
 ];
 
 // Mock Admins Data
