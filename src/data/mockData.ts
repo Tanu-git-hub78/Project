@@ -64,6 +64,13 @@ export interface ProjectTopic {
   prerequisites: string[];
 }
 
+// Get student payment status by student ID
+export const getStudentPaymentStatus = (studentId: string) => {
+  const student = students.find(s => s.id === studentId);
+  return student ? student.paymentStatus : 'unknown';
+};
+
+
 // Mock Students Data
 export const students: Student[] = [
   {
