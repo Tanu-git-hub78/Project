@@ -314,7 +314,17 @@ export const topicCards = departmentFolders.map(dept => ({
 }));
 console.log("✅ departmentFolders loaded", departmentFolders.length);
 
-export const updatePaymentStatus = (studentId: number, status: string) => {
-  console.log(`Updating payment status for student ${studentId} to ${status}`);
-  // You can later replace this with real logic or mock data update
+// ✅ Mock function to get student payment status
+export const getStudentPaymentStatus = (studentId: string) => {
+  const statusList = ["Paid", "Pending", "Overdue"];
+  const randomStatus = statusList[Math.floor(Math.random() * statusList.length)];
+  console.log(`💰 Payment status for ${studentId}: ${randomStatus}`);
+  return randomStatus;
 };
+
+// ✅ Mock function to update payment status
+export const updatePaymentStatus = (studentId: string, newStatus: string) => {
+  console.log(`✅ Payment status for student ${studentId} updated to: ${newStatus}`);
+  // In a real app, you'd send a backend request here
+};
+
