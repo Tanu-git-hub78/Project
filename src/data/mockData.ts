@@ -1,3 +1,18 @@
+export const notifications = [
+  {
+    id: 1,
+    message: "New project assigned to you",
+    time: "2 hours ago",
+    type: "info",
+  },
+  {
+    id: 2,
+    message: "Your evaluation deadline is tomorrow",
+    time: "1 day ago",
+    type: "warning",
+  },
+];
+
 // --- Notifications Data ---
 export const notifications = [
   {
