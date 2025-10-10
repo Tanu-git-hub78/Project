@@ -313,7 +313,14 @@ export const departmentFolders = [
   },
 ];
 
-export const topicCards = departmentFolders.map(...)
-
+// ✅ Create topic cards from department folders
+export const topicCards = departmentFolders.map(dept => ({
+  id: dept.id,
+  title: dept.name,
+  icon: dept.icon,
+  description: `Explore ${dept.projects.length} projects in ${dept.name}`,
+  color: dept.color,
+  projects: dept.projects,
+}));
 console.log("✅ departmentFolders loaded", departmentFolders.length);
 
