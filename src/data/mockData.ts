@@ -276,3 +276,19 @@ export const getAnalyticsData = () => {
     }
   };
 };
+
+export const submissions = [];
+
+export const addSubmission = (studentId: string, projectTitle: string, fileUrl: string) => {
+  const submission = {
+    id: `sub_${Date.now()}`,
+    studentId,
+    projectTitle,
+    fileUrl,
+    submittedAt: new Date().toISOString(),
+    status: "Submitted",
+  };
+
+  submissions.push(submission);
+  return submission;
+};
