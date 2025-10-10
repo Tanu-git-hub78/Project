@@ -382,3 +382,29 @@ export const submitVivaEvaluation = (
     message: `Viva evaluation submitted successfully for student ID: ${studentId}`,
   };
 };
+
+// ✅ Function to get assigned students for an examiner
+export const getAssignedStudents = (examinerId: string) => {
+  const students = [
+    { id: "stu1", name: "Aman Sharma", department: "Computer Science" },
+    { id: "stu2", name: "Neha Patel", department: "Computer Science" },
+    { id: "stu3", name: "Ravi Verma", department: "Computer Science" },
+  ];
+
+  // Example: filter based on examiner
+  if (examinerId === "examiner1") {
+    return students;
+  }
+  return [];
+};
+
+// ✅ Function to submit viva evaluation
+export const submitVivaEvaluation = (
+  studentId: string,
+  vivaMarks: number,
+  feedback: string,
+  comments: string
+) => {
+  console.log("Submitted Viva Evaluation:", { studentId, vivaMarks, feedback, comments });
+  return { success: true };
+};
