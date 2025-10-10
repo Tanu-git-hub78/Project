@@ -315,4 +315,5 @@ export const departmentFolders = [
 
 export const topicCards = departmentFolders.map(...)
 
+console.log("✅ departmentFolders loaded", departmentFolders.length);
 
