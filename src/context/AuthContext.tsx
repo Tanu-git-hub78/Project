@@ -19,6 +19,13 @@ export const useAuth = () => {
   return context;
 };
 
+// Define specific login credentials
+const LOGIN_CREDENTIALS = {
+  student: { username: 'Tanu1', password: 'Roll123' },
+  admin: { username: 'Tanu2', password: 'Roll1234' },
+  examiner: { username: 'examiner1', password: 'Roll12345' }
+};
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,26 +38,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(false);
   }, []);
 
- const login = (username: string, password: string): boolean => {
-  const validation = validateCredentials(username, password);
-
-  if (validation?.isValid && validation.userId && validation.role) {
-    let userData: User | undefined;
-
-    if (validation.role === "student") {
-      userData = students.find(s => s.id === validation.userId);
-    } else if (validation.role === "admin") {
-      userData = admins.find(a => a.id === validation.userId);
-    } else if (validation.role === "examiner") {
-      userData = examiners.find(e => e.id === validation.userId);
+  const login = (username: string, password: string): boolean => {
+    // Determine user type based on credentials
+    let userType: 'student' | 'admin' | 'examiner' | null = null;
+    
+    if (username === LOGIN_CREDENTIALS.student.username && password === LOGIN_CREDENTIALS.student.password) {
+      userType = 'student';
+    } else if (username === LOGIN_CREDENTIALS.admin.username && password === LOGIN_CREDENTIALS.admin.password) {
+      userType = 'admin';
+    } else if (username === LOGIN_CREDENTIALS.examiner.username && password === LOGIN_CREDENTIALS.examiner.password) {
+      userType = 'examiner';
+    }
+    
+    if (!userType) {
+      return false; // Invalid credentials
     }
 
-    // store userData in context or session if needed
-    return true; // login successful
-  }
+    // Get user data based on type
+    let userData: User | undefined;
+    
+    if (userType === 'student') {
+      userData = students.find(s => s.id === 'student1');
+    } else if (userType === 'admin') {
+      userData = admins.find(a => a.id === 'admin1');
+    } else if (userType === 'examiner') {
+      userData = examiners.find(e => e.id === 'examiner1');
+    }
+    
+    if (userData) {
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+      return true;
+    }
 
-  return false; // login failed
-};
+    return false;
+  };
 
 
   const logout = () => {
