@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { GraduationCap, Users, Eye, Search, FileText, CheckCircle, Clock, XCircle } from 'lucide-react';
+import { GraduationCap, Users, Eye, Search, FileText, CircleCheck as CheckCircle, Clock, Circle as XCircle } from 'lucide-react';
 import { degrees, generateStudentsForDegree, getStudentSubmissionStatus } from '../../data/mockData';
 
 const Degrees: React.FC = () => {
