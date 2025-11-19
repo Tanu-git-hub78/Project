@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import { Upload, FileText, CircleCheck as CheckCircle } from 'lucide-react';
-import { categories } from '../../data/mockData';
+import { categories, addSubmission } from '../../data/mockData';
+import { useAuth } from '../../context/AuthContext';
 
 const NewSubmission: React.FC = () => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     title: '',
     category: '',
     description: '',
     fileName: '',
-    facultyName: ''
+    facultyName: '',
+    department: user?.department || ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);

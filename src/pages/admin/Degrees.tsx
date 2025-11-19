@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import { GraduationCap, Users, Eye, Search, FileText, CheckCircle, Clock, XCircle } from 'lucide-react';
-import { degrees, generateStudentsForDegree, studentSubmissions, getStudentSubmissionStatus } from '../../data/mockData';
-import { Student, StudentSubmissionStatus } from '../../types';
+import { degrees, generateStudentsForDegree, getStudentSubmissionStatus } from '../../data/mockData';
 
 const Degrees: React.FC = () => {
   const [selectedDegree, setSelectedDegree] = useState<string | null>(null);
-  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+  const [selectedStudent, setSelectedStudent] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleDegreeClick = (degreeId: string) => {
@@ -18,7 +17,7 @@ const Degrees: React.FC = () => {
     return generateStudentsForDegree(degreeName, 50);
   };
 
-  const getStudentSubmissionData = (studentId: string): StudentSubmissionStatus | undefined => {
+  const getStudentSubmissionData = (studentId: string) => {
     return getStudentSubmissionStatus(studentId);
   };
 

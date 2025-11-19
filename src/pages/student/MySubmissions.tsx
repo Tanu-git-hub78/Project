@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
-import { Eye, Calendar, CircleCheck as CheckCircle, Clock, Circle as XCircle } from 'lucide-react';
+import { Eye, Calendar, CircleCheck as CheckCircle, Clock, Circle as XCircle, FileText } from 'lucide-react';
 import { submissions } from '../../data/mockData';
+import { useAuth } from '../../context/AuthContext';
 
 const MySubmissions: React.FC = () => {
+  const { user } = useAuth();
   const [selectedSubmission, setSelectedSubmission] = useState<any>(null);
+  
+  // Filter submissions for current user
+  const mySubmissions = submissions.filter(submission => submission.studentId === user?.id);
 
   const getStatusIcon = (status: string) => {
     switch (status) {
