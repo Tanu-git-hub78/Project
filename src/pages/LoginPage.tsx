@@ -18,21 +18,28 @@ const LoginPage: React.FC = () => {
     setError('');
     setIsLoading(true);
 
-    setTimeout(() => {
+    try {
       const success = login(username, password);
       if (success) {
-        if (loginType === 'student') {
-          navigate('/student');
-        } else if (loginType === 'admin') {
-          navigate('/admin');
-        } else if (loginType === 'examiner') {
-          navigate('/examiner');
-        }
+        // Small delay to show loading state
+        setTimeout(() => {
+          if (loginType === 'student') {
+            navigate('/student');
+          } else if (loginType === 'admin') {
+            navigate('/admin');
+          } else if (loginType === 'examiner') {
+            navigate('/examiner');
+          }
+          setIsLoading(false);
+        }, 500);
       } else {
         setError('Invalid Username or Password');
+        setIsLoading(false);
       }
+    } catch (error) {
+      setError('Login failed. Please try again.');
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleLoginTypeSelect = (type: 'student' | 'admin' | 'examiner') => {

@@ -55,23 +55,62 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
 
     // Get user data based on type
-    let userData: User | undefined;
+    let userData: User;
     
     if (userType === 'student') {
-      userData = students.find(s => s.id === 'student1');
+      const studentData = students.find(s => s.id === 'student1');
+      if (studentData) {
+        userData = {
+          id: studentData.id,
+          username: username,
+          role: 'student',
+          name: studentData.name,
+          email: studentData.email,
+          department: 'Computer Science',
+          rollNumber: studentData.rollNumber,
+          college: studentData.college,
+          degree: studentData.degree
+        };
+      } else {
+        return false;
+      }
     } else if (userType === 'admin') {
-      userData = admins.find(a => a.id === 'admin1');
+      const adminData = admins.find(a => a.id === 'admin1');
+      if (adminData) {
+        userData = {
+          id: adminData.id,
+          username: username,
+          role: 'admin',
+          name: adminData.name,
+          email: adminData.email,
+          department: adminData.department,
+          college: adminData.college
+        };
+      } else {
+        return false;
+      }
     } else if (userType === 'examiner') {
-      userData = examiners.find(e => e.id === 'examiner1');
+      const examinerData = examiners.find(e => e.id === 'examiner1');
+      if (examinerData) {
+        userData = {
+          id: examinerData.id,
+          username: username,
+          role: 'examiner',
+          name: examinerData.name,
+          email: examinerData.email,
+          department: examinerData.department,
+          college: examinerData.college
+        };
+      } else {
+        return false;
+      }
+    } else {
+      return false;
     }
     
-    if (userData) {
-      setUser(userData);
-      localStorage.setItem('user', JSON.stringify(userData));
-      return true;
-    }
-
-    return false;
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+    return true;
   };
 
 
