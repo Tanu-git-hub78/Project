@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 import { Link } from 'react-router-dom';
 import { Upload, BookOpen, Lightbulb, Bell, CreditCard, User, MessageCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import { notifications, getStudentPaymentStatus } from '../../data/mockData';
+import { notifications, getStudentPaymentStatus, submissions } from '../../data/mockData';
 
 const StudentDashboard: React.FC = () => {
   const { user } = useAuth();
