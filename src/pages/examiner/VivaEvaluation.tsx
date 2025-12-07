@@ -23,8 +23,14 @@ const VivaEvaluation: React.FC = () => {
   const [feedback, setFeedback] = useState('');
   const [examinerComments, setExaminerComments] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [availableSubmissions, setAvailableSubmissions] = useState(submissions);
 
   const assignedStudents = getAssignedStudents(user?.id || '');
+  
+  // Refresh submissions when component mounts
+  React.useEffect(() => {
+    setAvailableSubmissions([...submissions]);
+  }, []);
 
   // Pre-populate example data for demonstration
   const getExampleData = (studentName: string) => {

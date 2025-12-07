@@ -9,6 +9,13 @@ const StudentDashboard: React.FC = () => {
   const { user } = useAuth();
   const paymentStatus = getStudentPaymentStatus(user?.id || '');
   
+  // Get student's submissions for stats
+  const studentSubmissions = submissions.filter(s => 
+    s.studentId === user?.id || s.studentName === user?.name
+  );
+  const approvedSubmissions = studentSubmissions.filter(s => s.status === 'approved');
+  const pendingSubmissions = studentSubmissions.filter(s => s.status === 'pending');
+  
   const menuItems = [
     {
       title: 'Project Submission',
@@ -113,15 +120,15 @@ const StudentDashboard: React.FC = () => {
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600">0</div>
+            <div className="text-3xl font-bold text-blue-600">{studentSubmissions.length}</div>
             <div className="text-gray-600">Submissions</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600">0</div>
+            <div className="text-3xl font-bold text-green-600">{approvedSubmissions.length}</div>
             <div className="text-gray-600">Approved</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-yellow-600">0</div>
+            <div className="text-3xl font-bold text-yellow-600">{pendingSubmissions.length}</div>
             <div className="text-gray-600">Pending</div>
           </div>
           <div className="text-center">
@@ -131,6 +138,32 @@ const StudentDashboard: React.FC = () => {
             <div className="text-gray-600">Payment</div>
           </div>
         </div>
+        
+        {/* Recent Submissions */}
+        {studentSubmissions.length > 0 && (
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <h4 className="font-medium text-gray-900 mb-3">Recent Submissions</h4>
+            <div className="space-y-2">
+              {studentSubmissions.slice(0, 3).map((submission) => (
+                <div key={submission.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div>
+                    <p className="font-medium text-gray-900 text-sm">{submission.title}</p>
+                    <p className="text-xs text-gray-600">
+                      Submitted: {new Date(submission.submissionDate).toLocaleDateString()}
+                    </p>
+                  </div>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                    submission.status === 'approved' ? 'bg-green-100 text-green-800' :
+                    submission.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                    'bg-red-100 text-red-800'
+                  }`}>
+                    {submission.status.charAt(0).toUpperCase() + submission.status.slice(1)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Latest News */}

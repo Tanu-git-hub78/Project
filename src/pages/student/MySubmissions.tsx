@@ -9,7 +9,9 @@ const MySubmissions: React.FC = () => {
   const [selectedSubmission, setSelectedSubmission] = useState<any>(null);
   
   // Filter submissions for current user
-  const mySubmissions = submissions.filter(submission => submission.studentId === user?.id);
+  const mySubmissions = submissions.filter(submission => 
+    submission.studentId === user?.id || submission.studentName === user?.name
+  );
 
   const getStatusIcon = (status: string) => {
     switch (status) {

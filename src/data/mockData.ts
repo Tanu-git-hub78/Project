@@ -535,6 +535,16 @@ export const addSubmission = (submission: Omit<Submission, 'id'>) => {
     ...submission
   };
   submissions.push(newSubmission);
+  
+  // Also update the student's project status
+  const student = students.find(s => s.id === submission.studentId);
+  if (student) {
+    student.projectTitle = submission.title;
+    student.projectDescription = submission.description;
+    student.projectStatus = 'submitted';
+    student.submissionDate = submission.submissionDate;
+  }
+  
   return newSubmission;
 };
 

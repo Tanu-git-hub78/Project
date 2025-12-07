@@ -5,11 +5,16 @@ import { submissions } from '../../data/mockData';
 import { Submission } from '../../types';
 
 const Projects: React.FC = () => {
-  const [projectList, setProjectList] = useState(submissions);
+  const [projectList, setProjectList] = useState([...submissions]);
   const [selectedProject, setSelectedProject] = useState<Submission | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [feedback, setFeedback] = useState('');
   const [examinerComments, setExaminerComments] = useState('');
+
+  // Refresh submissions when component mounts
+  React.useEffect(() => {
+    setProjectList([...submissions]);
+  }, []);
 
   const handleStatusChange = (projectId: string, newStatus: 'approved' | 'rejected' | 'pending') => {
     setProjectList(prev => prev.map(project => 
@@ -17,6 +22,18 @@ const Projects: React.FC = () => {
         ? { ...project, status: newStatus, feedback: feedback, examinerComments: examinerComments }
         : project
     ));
+    
+    // Also update the original submissions array
+    const submissionIndex = submissions.findIndex(s => s.id === projectId);
+    if (submissionIndex !== -1) {
+      submissions[submissionIndex] = {
+        ...submissions[submissionIndex],
+        status: newStatus,
+        feedback: feedback,
+        examinerComments: examinerComments
+      };
+    }
+    
     setSelectedProject(null);
     setFeedback('');
     setExaminerComments('');

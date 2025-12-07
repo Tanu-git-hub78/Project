@@ -59,7 +59,8 @@ const ProjectSubmission: React.FC = () => {
         fileType: selectedFile?.type || '',
         submissionDate: new Date().toISOString(),
         status: 'pending' as const,
-        paymentStatus: 'paid' as const // Bypass payment for now
+        paymentStatus: 'paid' as const,
+        category: 'General Project'
       };
 
       addSubmission(submission);
@@ -67,7 +68,7 @@ const ProjectSubmission: React.FC = () => {
       setIsSuccess(true);
 
       setTimeout(() => {
-        window.location.href = '/student/profile';
+        window.location.href = '/student';
       }, 2000);
     }, 1500);
   };
