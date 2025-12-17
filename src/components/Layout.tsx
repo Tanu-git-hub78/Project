@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { User, LogOut, HelpCircle } from 'lucide-react';
+import { User, LogOut, Circle as HelpCircle } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
