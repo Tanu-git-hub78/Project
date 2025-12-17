@@ -6,7 +6,8 @@ import LoginPage from './pages/LoginPage';
 
 // Student Pages
 import StudentDashboard from './pages/student/StudentDashboard';
-import ProjectSubmission from './pages/student/ProjectSubmission';
+import * as ProjectSubmissionModule from './pages/student/ProjectSubmission';
+const ProjectSubmission = ProjectSubmissionModule.default;
 import ProjectTopics from './pages/student/ProjectTopics';
 import Payment from './pages/student/Payment';
 import StudentProfile from './pages/student/StudentProfile';
