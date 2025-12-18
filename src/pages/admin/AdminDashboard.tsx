@@ -82,6 +82,52 @@ const AdminDashboard: React.FC = () => {
         </p>
       </div>
 
+      {/* Featured Innovations Section */}
+      <div className="bg-gradient-to-r from-[#843534] to-[#6d2a29] rounded-xl shadow-sm p-6 mb-8 text-white">
+        <div className="flex items-center space-x-3 mb-6">
+          <div className="p-2 bg-white bg-opacity-20 rounded-lg">
+            <Award className="h-6 w-6" />
+          </div>
+          <h3 className="text-xl font-semibold">High-Impact Featured Projects</h3>
+          <span className="bg-white text-[#843534] px-3 py-1 rounded-full text-sm font-medium">FEATURED</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition-all">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center space-x-2">
+                <span className="text-2xl">🔬</span>
+                <h4 className="font-semibold">VR Crime Scene</h4>
+              </div>
+              <span className="text-xs bg-white bg-opacity-20 px-2 py-1 rounded">12 Students</span>
+            </div>
+            <p className="text-sm opacity-90">Forensic Science Department</p>
+            <p className="text-xs opacity-75 mt-1">Advanced VR technology project</p>
+          </div>
+          <div className="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition-all">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center space-x-2">
+                <span className="text-2xl">🌟</span>
+                <h4 className="font-semibold">AI Sanskrit</h4>
+              </div>
+              <span className="text-xs bg-white bg-opacity-20 px-2 py-1 rounded">8 Students</span>
+            </div>
+            <p className="text-sm opacity-90">Sanskrit Jyotirvigyan</p>
+            <p className="text-xs opacity-75 mt-1">ML-powered horoscope prediction</p>
+          </div>
+          <div className="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition-all">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center space-x-2">
+                <span className="text-2xl">🌾</span>
+                <h4 className="font-semibold">IoT Agriculture</h4>
+              </div>
+              <span className="text-xs bg-white bg-opacity-20 px-2 py-1 rounded">15 Students</span>
+            </div>
+            <p className="text-sm opacity-90">Agriculture Science</p>
+            <p className="text-xs opacity-75 mt-1">Smart farming with IoT sensors</p>
+          </div>
+        </div>
+      </div>
+
       {/* KPI Dashboard */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         {/* Project Submissions by Department */}

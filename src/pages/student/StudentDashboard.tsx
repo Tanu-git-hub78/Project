@@ -159,6 +159,43 @@ const StudentDashboard: React.FC = () => {
         </div>
       </div>
 
+      {/* Featured Innovations Section */}
+      <div className="bg-gradient-to-r from-[#843534] to-[#6d2a29] rounded-xl shadow-sm p-6 mb-8 text-white">
+        <div className="flex items-center space-x-3 mb-6">
+          <div className="p-2 bg-white bg-opacity-20 rounded-lg">
+            <Sparkles className="h-6 w-6" />
+          </div>
+          <h3 className="text-xl font-semibold">High-Impact Featured Projects</h3>
+          <span className="bg-white text-[#843534] px-3 py-1 rounded-full text-sm font-medium">FEATURED</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition-all cursor-pointer">
+            <div className="flex items-center space-x-2 mb-2">
+              <span className="text-2xl">🔬</span>
+              <h4 className="font-semibold">VR Crime Scene Reconstruction</h4>
+            </div>
+            <p className="text-sm opacity-90 mb-2">Forensic Science • Advanced Level</p>
+            <p className="text-xs opacity-75">Immersive VR technology for forensic investigation training</p>
+          </div>
+          <div className="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition-all cursor-pointer">
+            <div className="flex items-center space-x-2 mb-2">
+              <span className="text-2xl">🌟</span>
+              <h4 className="font-semibold">AI Sanskrit Horoscope</h4>
+            </div>
+            <p className="text-sm opacity-90 mb-2">Sanskrit Jyotirvigyan • Advanced Level</p>
+            <p className="text-xs opacity-75">Machine learning meets traditional Jyotish calculations</p>
+          </div>
+          <div className="bg-white bg-opacity-10 rounded-lg p-4 hover:bg-opacity-20 transition-all cursor-pointer">
+            <div className="flex items-center space-x-2 mb-2">
+              <span className="text-2xl">🌾</span>
+              <h4 className="font-semibold">IoT Precision Farming</h4>
+            </div>
+            <p className="text-sm opacity-90 mb-2">Agriculture Science • Intermediate Level</p>
+            <p className="text-xs opacity-75">Smart sensors for modern agricultural monitoring</p>
+          </div>
+        </div>
+      </div>
+
       {/* AI Recommended Projects */}
       <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl shadow-sm p-6 mb-8">
         <div className="flex items-center space-x-3 mb-6">
