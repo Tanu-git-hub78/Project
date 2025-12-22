@@ -168,5 +168,3 @@ export interface TopicProject {
   };
   isBookmarked?: boolean;
 }
-  workshopModule?: string;
-  isFeatured?: boolean;
